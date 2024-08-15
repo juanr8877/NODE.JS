@@ -1,0 +1,13 @@
+<%- include("templates/cabeceras", {tituloWeb: "Crear mascotas"}) %>
+
+    <div class="container">
+        <h1>Crear</h1>
+        <form action="/mascotas" method="post">
+            <input name="nombre" type="text" placeholder="Agragar nombre" class="form-control my-2">
+            <input name="descripcion" type="text" placeholder="Descripcion" class="form-control my-2">
+            <button class="btn btn-success w-100" type="submit">Agregar</button>
+        </form>
+
+    </div>
+
+<%- include("templates/footer") %>

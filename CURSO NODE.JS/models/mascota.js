@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema  = mongoose.Schema;
 
 const mascotaSchema = new Schema({
-    nomobre: String,
+    nombre: String,
     descripcion: String,
 })
 

@@ -1,6 +1,11 @@
 <%- include("templates/cabeceras", {tituloWeb: "Pagina de inicio"}) %>
     
     <div class="container">
+
+        <h1>Crud mongo</h1>
+
+        <a class="btn btn-success my-4 w-100" href="/mascotas/crearMascota" type="submit">Crear nueva mascota</a>
+
         <table class="table">
             <thead>
                 <tr>
@@ -18,7 +23,11 @@
                             <th scope="row"><%= mascota.id %></th>
                             <td><%= mascota.nombre %></td>
                             <td><%= mascota.descripcion %></td>
-                            <td>@mdo</td>
+                            <td>
+                                <a href="mascotas/<%= mascota.id %>" class="btn btn-warning btn-sm">
+                                    Editar
+                                </a>
+                            </td>
                         </tr>
 
                     <% }) %>
