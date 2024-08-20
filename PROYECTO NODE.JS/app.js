@@ -1,44 +1,42 @@
-const express = require('express');
+const express = require("express");
+const path = require('path');
+const logger = require('morgan');
 const app = express();
-
-const bodyParser = require('body-parser');
-app.use(express.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-
 require('dotenv').config();
 
-//Puerto de conexion al servidor
-const port = process.env.PORT || 3000;
-
-//conexion a base de datos
-const mongoose = require('mongoose');
-const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0adso2669734.qnkyayn.mongodb.net/${process.env.DB}?retryWrites=true&w=majority&appName=Cluster0ADSO2669734`;
-mongoose.connect(uri)
-.then (() => {
-  console.log('Base de datos conectada')
-})
-.catch((error) => {
-  console.log(error)
-})
-
-//motor de plantillas
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
-
-//Archivos estaticos
-app.use(express.static(__dirname + "/public"));
-
-//Rutas Web
-app.use('/', require('./router/rutasWeb'));
-
-//midelware
-app.use((req, res, next) => {
-    res.status(404).render("404", {
-    titulo : "ERROR 404",
-    descripcion : "titulo del sitio web"})
+// Ruta principal
+app.get("/", (req, res) => {
+  res.render('pages/index');
 });
 
-//llamado al servidor
-app.listen(port, () => {
-  console.log(`El servidor esta conectado en este puerto ${port}`)
+//Rutas
+const userRoutes = require('./router/rutasWeb');
+app.use('/api', userRoutes);
+
+//Configuración de middlewares
+app.use(logger('dev'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static(path.join(__dirname, '/public')));
+// const session = require('express-session');
+
+// app.use(session({
+//     secret: 'tu_secreto_aqui',
+//     resave: false,
+//     saveUninitialized: true
+// }));
+
+app.use((req, res) => {
+  res.status(404).render("pages/404");
 });
+
+// Motor de plantilla
+app.set("view engine", "ejs");
+app.set("views", __dirname + "/views");
+
+//Puerto de eschuca servidor
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`El servidor esta en el puerto http://localhost:${PORT}`);
+});
+

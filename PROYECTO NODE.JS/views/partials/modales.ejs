@@ -1,0 +1,95 @@
+<!--========================================================== -->
+<!--MODALE LOGIN-->
+<!--========================================================== -->
+
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form class="formulario-modal">
+                
+                <h1>Login</h1>
+
+                <div class="contenedor-modal">
+
+                    <div class="input-contenedor">
+                        <i class="fas fa-envelope icon"></i>
+                        <input type="text" placeholder="Correo Electronico">
+                    </div>
+
+                    <div class="input-contenedor">
+                        <i class="fas fa-key icon"></i>
+                        <input type="password" placeholder="Contraseña">
+                    </div>
+
+                    <input type="submit" value="Login" class="button">
+                    <p>¿No tienes una cuenta? <a id="link-to-register" class="link" href="#">Regístrate</a></p>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--========================================================== -->
+<!--MODALE LOGOUT-->
+<!--========================================================== -->
+
+<div class="modal fade" id="logout" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form class="formulario-modal">
+
+                <h1>Regístrate</h1>
+
+                <div class="contenedor-modal">
+
+                    <div class="input-contenedor">
+                        <i class="fas fa-user icon"></i>
+                        <input type="text" placeholder="Nombre Completo">
+                    </div>
+
+                    <div class="input-contenedor">
+                        <i class="fas fa-envelope icon"></i>
+                        <input type="text" placeholder="Correo Electronico">
+                    </div>
+
+                    <div class="input-contenedor">
+                        <i class="fas fa-key icon"></i>
+                        <input type="password" placeholder="Contraseña">
+                    </div>
+
+                    <input type="submit" value="Regístrate" class="button">
+                    <p>¿Ya tienes una cuenta? <a id="link-to-login" class="link" href="#">Iniciar Sesión</a></p>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!--========================================================== -->
+<!--Scrip para pasar entre modales-->
+<!--========================================================== -->
+
+<script>
+    document.getElementById('link-to-register').addEventListener('click', function(event) {
+        event.preventDefault();
+        var loginModal = bootstrap.Modal.getInstance(document.getElementById('login'));
+        loginModal.hide();
+        var registerModal = new bootstrap.Modal(document.getElementById('logout'));
+        registerModal.show();
+    });
+
+    document.getElementById('link-to-login').addEventListener('click', function(event) {
+        event.preventDefault();
+        var registerModal = bootstrap.Modal.getInstance(document.getElementById('logout'));
+        registerModal.hide();
+        var loginModal = new bootstrap.Modal(document.getElementById('login'));
+        loginModal.show();
+    });
+</script>

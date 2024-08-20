@@ -1,0 +1,62 @@
+<!--========================================================== -->
+<!-- HEAD -->
+<!--========================================================== -->
+
+<%- include('../../partials/head', {tituloWeb: 'Pedidos'}) %>
+
+<!--========================================================== -->
+<!-- NAVBAR -->
+<!--========================================================== -->
+
+<%- include('../../partials/navbar') %>
+
+
+<!--=========================***CONTENIDO***================================-->
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th scope="col">cliente</th>
+            <th scope="col">carrito</th>
+            <th scope="col">Subtotal</th>
+            <th scope="col">habilitado</th>
+            <th scope="col">Accion</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        <% if (pedidos.length > 0) { %>
+            <% pedidos.forEach(pedidos => { %>
+                <tr>
+                    <td><%= pedidos.cliente %></td>      
+                    <td><%= pedidos.carrito %></td> 
+                    <td><%= pedidos.Subtotal %></td> 
+                    <td><%= pedidos.habilitado %></td>     
+                    <td class="btn-formularios">
+                        <a href="" class="btn btn-warning"><i class="fa-solid fa-file-pen"></i></a>
+                        <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                        <a href="" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                    </td>
+                </tr>
+            <% }) %>
+        <% } %>
+    
+    </tbody>
+</table>
+
+<!--=========================***CONTENIDO***================================-->
+
+
+<!--========================================================== -->
+<!--FOOTER-->
+<!--========================================================== -->
+
+<%- include('../../partials/footer') %>
+
+<!--========================================================== -->
+<!--MODALE LOGIN Y LOGOUT-->
+<!--========================================================== -->
+
+<%- include('../../partials/modales') %>
