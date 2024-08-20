@@ -2,7 +2,13 @@ const express = require("express");
 const path = require('path');
 const logger = require('morgan');
 const app = express();
+const bodyParser = require('body-parser');
 require('dotenv').config();
+
+// parse application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
 // Ruta principal
 app.get("/", (req, res) => {

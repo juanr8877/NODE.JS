@@ -42,9 +42,11 @@
                     <td><%= productos.habilitado %></td>          
                     <td><%= productos.usuario %></td>
                     <td class="btn-formularios">
-                        <a href="" class="btn btn-warning"><i class="fa-solid fa-file-pen"></i></a>
-                        <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
-                        <a href="" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                        <a href="/api/productos/detalles/<%= productos._id %>" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                        <a href="/api/productos/editar/<%= productos._id %>" class="btn btn-warning"><i class="fa-solid fa-file-pen"></i></a>
+                        <form action="/api/productos/aliminar/<%= productos._id %>" method="POST" style="display: inline;">
+                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash" ></i></button>
+                        </form>
                     </td>
                 </tr>
             <% }) %>
@@ -52,6 +54,20 @@
     
     </tbody>
 </table>
+
+<button 
+    type="button" 
+    class="btn btn-success" 
+    style="margin-bottom: 15px;" 
+    data-bs-toggle="modal" 
+    data-bs-target="#crearProducto">
+    Crear Nuevo Producto
+    <i 
+    class="fa-solid fa-plus" 
+    style="margin-left: 9px;">
+    </i>
+</button>
+
 
 <!--=========================***CONTENIDO***================================-->
 
@@ -63,7 +79,7 @@
 <%- include('../../partials/footer') %>
 
 <!--========================================================== -->
-<!--MODALE LOGIN Y LOGOUT-->
+<!--MODALES-->
 <!--========================================================== -->
 
 <%- include('../../partials/modales') %>
