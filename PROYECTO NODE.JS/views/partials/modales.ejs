@@ -85,31 +85,31 @@
                 <form action="/api/productos/crear" method="POST">
                     <div class="mb-3">
                         <label for="referencia" class="form-label">Referencia</label>
-                        <input type="text" class="form-control" id="referencia" name="referencia" placeholder="Ingrese la referencia del producto" required>
+                        <input type="text" class="form-control"  name="referencia" placeholder="Ingrese la referencia del producto" required>
                     </div>
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre del producto" required>
+                        <input type="text" class="form-control"  name="nombre" placeholder="Ingrese el nombre del producto" required>
                     </div>
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripción</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Ingrese la descripción del producto" required></textarea>
+                        <textarea class="form-control" name="descripcion" rows="3" placeholder="Ingrese la descripción del producto" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="precio" class="form-label">Precio</label>
-                        <input type="number" class="form-control" id="precio" name="precio" placeholder="Ingrese el precio del producto" step="0.01" required>
+                        <input type="number" class="form-control"  name="precio" placeholder="Ingrese el precio del producto" step="0.01" required>
                     </div>
                     <div class="mb-3">
                         <label for="stock" class="form-label">Stock</label>
-                        <input type="number" class="form-control" id="stock" name="stock" placeholder="Ingrese la cantidad en stock" required>
+                        <input type="number" class="form-control" name="stock" placeholder="Ingrese la cantidad en stock" required>
                     </div>
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Imagen (URL)</label>
-                        <input type="text" class="form-control" id="imagen" name="imagen" required>
+                        <input type="text" class="form-control" name="imagen" required>
                     </div>
                     <div class="mb-3">
                         <label for="habilitado" class="form-label">Habilitado</label>
-                        <select class="form-select" name="habilitado"  id="habilitado" required>
+                        <select class="form-select" required>
                             <option value="true">Sí</option>
                             <option value="false">No</option>
                         </select>
@@ -130,23 +130,203 @@
 </div>
 
 <!--========================================================== -->
-<!--Scrip para pasar entre modales login y logout-->
+<!--MODALE EDITAR PRODUCTOS-->
+<!--========================================================== -->
+
+<div class="modal fade" id="editarProducto" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="container mt-5 p-4 ">
+                <h2>Editar Producto</h2>
+                <form id="editarProductoForm" method="POST">
+                    <div class="mb-3">
+                        <label for="referencia" class="form-label">Referencia</label>
+                        <input type="text" class="form-control" id="referencia"  name="referencia" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre"  name="nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <input class="form-control" id="descripcion" name="descripcion" rows="3" required></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" class="form-control" id="precio" name="precio" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input type="number" class="form-control" id="stock" name="stock" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen (URL)</label>
+                        <input type="text" class="form-control" id="imagen" name="imagen" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="habilitado" class="form-label">Habilitado</label>
+                        <select class="form-select" id="habilitado" name="habilitado" required>
+                            <option value="true">Sí</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-between" style="margin-bottom: 10px;">
+                        <button type="submit" class="btn btn-success">Guardar Cambios <i class="fa-solid fa-check" style="margin-left: 10px;"></i></button>
+                        <a href="/api/productos" class="btn btn-danger">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--========================================================== -->
+<!--MODAL ELIMINAR PRODUCTOS-->
+<!--========================================================== -->
+
+<div class="modal fade" id="eliminarProducto" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="container p-4 text-center ">
+                <h2>Editar Producto</h2>
+                <form id="formEliminarProducto" method="POST">
+                    <input type="hidden" id="productoId" name="productoId">
+                    <p>¿Estás seguro de que deseas eliminar este producto?</p>
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!--========================================================== -->
+<!--MODAL DETALLE PRODUCTOS-->
+<!--========================================================== -->
+
+<div class="modal fade" id="detalleProducto" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content modal-detalle">
+
+            <div class="container mt-5 formDetalle">
+                <h2>Detalle Producto</h2>
+                <hr>
+                <form id="formDetalleProducto" method="POST">
+                    <div class="mb-3">
+                        <label for="referencia" class="form-label fw-bold">Referencia:</label>
+                        <td id="detalleReferencia"></td>              
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label fw-bold">Nombre:</label>
+                        <td id="detalleNombre"></td> 
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label fw-bold">Descripción:</label>
+                        <td id="detalleDescripcion"></td> 
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label fw-bold">Precio:</label>
+                        <td id="detallePrecio"></td>     
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock" class="form-label fw-bold">Stock:</label>
+                        <td id="detalleStock"></td>          
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label fw-bold">imagen:</label>
+                        <td id="detalleImagen"></td>          
+                    </div>
+                    <div class="mb-3">
+                        <label for="habilitado" class="form-label fw-bold">Habilitado:</label>
+                        <td id="detalleHabilitado"></td>          
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--========================================================== -->
+<!--Scrip para editar prodcutos-->
 <!--========================================================== -->
 
 <script>
-    document.getElementById('link-to-register').addEventListener('click', function(event) {
-        event.preventDefault();
-        var loginModal = bootstrap.Modal.getInstance(document.getElementById('login'));
-        loginModal.hide();
-        var registerModal = new bootstrap.Modal(document.getElementById('logout'));
-        registerModal.show();
+    // Configurar el formulario de edición cuando se abre el modal
+    $('#editarProducto').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Botón que activó el modal
+        var idDetalle = button.data('idDetalle');
+        var referencia = button.data('referencia');
+        var nombre = button.data('nombre');
+        var descripcion = button.data('descripcion');
+        var precio = button.data('precio');
+        var stock = button.data('stock');
+        var imagen = button.data('imagen');
+        var habilitado = button.data('habilitado');
+       
+        var modal = $(this);
+        modal.find('#editarProductoForm').attr('action', '/api/productos/editar/' + id);
+        modal.find('#idDetalle').val(idDetalle);
+        modal.find('#referencia').val(referencia);
+        modal.find('#nombre').val(nombre);
+        modal.find('#descripcion').val(descripcion);
+        modal.find('#precio').val(precio);
+        modal.find('#stock').val(stock);
+        modal.find('#imagen').val(imagen);
+        modal.find('#habilitado').val(habilitado);
     });
 
-    document.getElementById('link-to-login').addEventListener('click', function(event) {
-        event.preventDefault();
-        var registerModal = bootstrap.Modal.getInstance(document.getElementById('logout'));
-        registerModal.hide();
-        var loginModal = new bootstrap.Modal(document.getElementById('login'));
-        loginModal.show();
+
+    // Configurar el formulario de eliminar cuando se abre el modal
+    $('#eliminarProducto').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Botón que activó el modal
+        var id = button.data('id'); // Extraer el id del cliente
+
+        var modal = $(this);
+        var form = modal.find('#formEliminarProducto');
+        
+        // Actualizar la acción del formulario para incluir el ID del cliente
+        form.attr('action', '/api/productos/aliminar/' + id);
     });
+
+    // Configurar el formulario de detalle cuando se abre el modal
+
+    $(document).ready(function() {
+        $('#detalleProducto').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+
+            // Captura los datos del botón
+            var referencia = button.data('referencia');
+            var nombre = button.data('nombre');
+            var descripcion = button.data('descripcion');
+            var precio = button.data('precio');
+            var stock = button.data('stock');
+            var imagen = button.data('imagen');
+            var habilitado = button.data('habilitado');
+
+            console.log('Referencia:', referencia);
+            console.log('Nombre:', nombre);
+            console.log('Descripción:', descripcion);
+            console.log('Precio:', precio);
+            console.log('Stock:', stock);
+            console.log('Imagen:', imagen);
+            console.log('Habilitado:', habilitado);
+
+            // Rellena los datos en el modal
+            var modal = $(this);
+            modal.find('#detalleReferencia').text(referencia);
+            modal.find('#detalleNombre').text(nombre);
+            modal.find('#detalleDescripcion').text(descripcion);
+            modal.find('#detallePrecio').text(precio);
+            modal.find('#detalleStock').text(stock);
+            modal.find('#detalleImagen').text(imagen);
+            modal.find('#detalleHabilitado').text(habilitado ? 'Sí' : 'No');
+        });
+    });
+    
+
 </script>

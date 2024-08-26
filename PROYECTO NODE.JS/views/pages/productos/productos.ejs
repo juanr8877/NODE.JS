@@ -13,7 +13,7 @@
 
 <!--=========================***CONTENIDO***================================-->
 
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
             <th scope="col">Referencia</th>
@@ -42,11 +42,33 @@
                     <td><%= productos.habilitado %></td>          
                     <td><%= productos.usuario %></td>
                     <td class="btn-formularios">
-                        <a href="/api/productos/detalles/<%= productos._id %>" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
-                        <a href="/api/productos/editar/<%= productos._id %>" class="btn btn-warning"><i class="fa-solid fa-file-pen"></i></a>
-                        <form action="/api/productos/aliminar/<%= productos._id %>" method="POST" style="display: inline;">
-                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash" ></i></button>
-                        </form>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleProducto"
+                            data-idDetalle="<%= productos._id %>"
+                            data-referencia="<%= productos.referencia %>"
+                            data-nombre="<%= productos.nombre %>"
+                            data-descripcion="<%= productos.descripcion %>"
+                            data-precio="<%= productos.precio %>"
+                            data-stock="<%= productos.stock %>"
+                            data-imagen="<%= productos.imagen %>"
+                            data-habilitado="<%= productos.habilitado %>">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>                        
+                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarProducto"
+                            data-id="<%= productos._id %>"
+                            data-referencia="<%= productos.referencia %>"
+                            data-nombre="<%= productos.nombre %>"
+                            data-descripcion="<%= productos.descripcion %>"
+                            data-precio="<%= productos.precio %>"
+                            data-stock="<%= productos.stock %>"
+                            data-imagen="<%= productos.imagen %>"
+                            data-habilitado="<%= productos.habilitado %>">
+                            <i class="fa-solid fa-file-pen"></i>
+                        </button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarProducto"
+                            data-id="<%= productos._id %>">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                        
                     </td>
                 </tr>
             <% }) %>
