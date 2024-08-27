@@ -21,21 +21,14 @@ exports.crearProductos = async (req, res) => {
     }
 };
 
-
 exports.detalleProductos = async (req, res) => {
     try {
-        const productos = await productoModel.findById(req.params.idDetalle);
-
-        if (!productos) {
-            return res.status(404).json({ error: true, mensaje: 'Producto no encontrado' });
-        }
-
-        res.json({ error: false, productos });
-        
+        const productos = await productoModel.findById(req.params.id);
+        res.status(200).json(productos);
     } catch (error) {
         console.log(error);
-        res.status(500).json({ error: true, mensaje: 'No se encontró el Id seleccionado' });
-    }
+        res.status(500).json({ error: 'No se pudo encontrar el producto' });
+    }
 };
 
 

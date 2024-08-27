@@ -216,36 +216,34 @@
             <div class="container mt-5 formDetalle">
                 <h2>Detalle Producto</h2>
                 <hr>
-                <form id="formDetalleProducto" method="POST">
-                    <div class="mb-3">
-                        <label for="referencia" class="form-label fw-bold">Referencia:</label>
-                        <td id="detalleReferencia"></td>              
-                    </div>
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label fw-bold">Nombre:</label>
-                        <td id="detalleNombre"></td> 
-                    </div>
-                    <div class="mb-3">
-                        <label for="descripcion" class="form-label fw-bold">Descripción:</label>
-                        <td id="detalleDescripcion"></td> 
-                    </div>
-                    <div class="mb-3">
-                        <label for="precio" class="form-label fw-bold">Precio:</label>
-                        <td id="detallePrecio"></td>     
-                    </div>
-                    <div class="mb-3">
-                        <label for="stock" class="form-label fw-bold">Stock:</label>
-                        <td id="detalleStock"></td>          
-                    </div>
-                    <div class="mb-3">
-                        <label for="imagen" class="form-label fw-bold">imagen:</label>
-                        <td id="detalleImagen"></td>          
-                    </div>
-                    <div class="mb-3">
-                        <label for="habilitado" class="form-label fw-bold">Habilitado:</label>
-                        <td id="detalleHabilitado"></td>          
-                    </div>
-                </form>
+                <table id="detalleProductoTable" class="table table-striped">
+                    <tr>
+                        <th>Referencia:</th>
+                        <td id="detalleReferencia"></td>
+                    </tr>
+                    <tr>
+                        <th>Nombre:</th>
+                        <td id="detalleNombre"></td>
+                    </tr>
+                    <tr>
+                        <th>Descripción:</th>
+                        <td id="detalleDescripcion"></td>
+                    </tr>
+                    <tr>
+                        <th>Precio:</th>
+                        <td id="detallePrecio"></td>
+                    </tr>
+                    <tr>
+                        <th>Stock:</th>
+                        <td id="detalleStock"></td>
+                    </tr>
+                    <tr>
+                        <th>Imagen:</th>
+                        <td>
+                            <img id="detalleImagen" alt="Imagen del producto" style="width: 100px; height: auto;">
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
@@ -259,7 +257,7 @@
     // Configurar el formulario de edición cuando se abre el modal
     $('#editarProducto').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Botón que activó el modal
-        var idDetalle = button.data('idDetalle');
+        var id = button.data('id');
         var referencia = button.data('referencia');
         var nombre = button.data('nombre');
         var descripcion = button.data('descripcion');
@@ -270,7 +268,7 @@
        
         var modal = $(this);
         modal.find('#editarProductoForm').attr('action', '/api/productos/editar/' + id);
-        modal.find('#idDetalle').val(idDetalle);
+        modal.find('#id').val(id);
         modal.find('#referencia').val(referencia);
         modal.find('#nombre').val(nombre);
         modal.find('#descripcion').val(descripcion);
@@ -295,36 +293,25 @@
 
     // Configurar el formulario de detalle cuando se abre el modal
 
-    $(document).ready(function() {
-        $('#detalleProducto').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
+    document.addEventListener('DOMContentLoaded', function () {
+        const verModal = document.getElementById('detalleProducto');
 
-            // Captura los datos del botón
-            var referencia = button.data('referencia');
-            var nombre = button.data('nombre');
-            var descripcion = button.data('descripcion');
-            var precio = button.data('precio');
-            var stock = button.data('stock');
-            var imagen = button.data('imagen');
-            var habilitado = button.data('habilitado');
+        verModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const productoId = button.getAttribute('data-id');
 
-            console.log('Referencia:', referencia);
-            console.log('Nombre:', nombre);
-            console.log('Descripción:', descripcion);
-            console.log('Precio:', precio);
-            console.log('Stock:', stock);
-            console.log('Imagen:', imagen);
-            console.log('Habilitado:', habilitado);
-
-            // Rellena los datos en el modal
-            var modal = $(this);
-            modal.find('#detalleReferencia').text(referencia);
-            modal.find('#detalleNombre').text(nombre);
-            modal.find('#detalleDescripcion').text(descripcion);
-            modal.find('#detallePrecio').text(precio);
-            modal.find('#detalleStock').text(stock);
-            modal.find('#detalleImagen').text(imagen);
-            modal.find('#detalleHabilitado').text(habilitado ? 'Sí' : 'No');
+            fetch(`/api/productos/detalles/${productoId}`)
+                .then(response => response.json())
+                .then(productos => {
+                    // Rellenar los campos del modal con los datos del producto
+                    document.getElementById('detalleReferencia').textContent = productos.referencia;
+                    document.getElementById('detalleNombre').textContent = productos.nombre;
+                    document.getElementById('detalleDescripcion').textContent = productos.descripcion;
+                    document.getElementById('detallePrecio').textContent = productos.precio;
+                    document.getElementById('detalleStock').textContent = productos.stock;
+                    document.getElementById('detalleImagen').textContent = productos.imagen;
+                })
+                .catch(error => console.error('Error al cargar los detalles del producto:', error));
         });
     });
     

@@ -9,7 +9,7 @@ const usuarios = require('../controllers/usuarios.controller');
 //Productos
 router.get('/productos', productos.listarProductos);
 router.post('/productos/crear', productos.crearProductos);
-router.get('/productos/detalles/:idDetalle', productos.detalleProductos);
+router.get('/productos/detalles/:id', productos.detalleProductos);
 router.post('/productos/aliminar/:id', productos.eliminarProductos);
 router.post('/productos/editar/:id', productos.actualizarProductos);
 

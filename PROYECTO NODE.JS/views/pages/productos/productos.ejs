@@ -13,83 +13,84 @@
 
 <!--=========================***CONTENIDO***================================-->
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Referencia</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Imagen</th>
-            <th scope="col">Habilitado</th>
-            <th scope="col">Usuario</th>
-            <th scope="col">Accion</th>
-
-        </tr>
-    </thead>
-    <tbody>
-
-        <% if (productos.length > 0) { %>
-            <% productos.forEach(productos => { %>
+<div class="container my-5">
+    <div class="row">
+        <table id="example" class="table table-striped" style="width:100%">
+            <caption>
+                Tabla Productos
+            </caption>
+            <thead>
                 <tr>
-                    <td><%= productos.referencia %></td>      
-                    <td><%= productos.nombre %></td> 
-                    <td><%= productos.descripcion %></td> 
-                    <td><%= productos.precio %></td>     
-                    <td><%= productos.stock %></td>          
-                    <td>imagen</td> 
-                    <td><%= productos.habilitado %></td>          
-                    <td><%= productos.usuario %></td>
-                    <td class="btn-formularios">
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleProducto"
-                            data-idDetalle="<%= productos._id %>"
-                            data-referencia="<%= productos.referencia %>"
-                            data-nombre="<%= productos.nombre %>"
-                            data-descripcion="<%= productos.descripcion %>"
-                            data-precio="<%= productos.precio %>"
-                            data-stock="<%= productos.stock %>"
-                            data-imagen="<%= productos.imagen %>"
-                            data-habilitado="<%= productos.habilitado %>">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>                        
-                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarProducto"
-                            data-id="<%= productos._id %>"
-                            data-referencia="<%= productos.referencia %>"
-                            data-nombre="<%= productos.nombre %>"
-                            data-descripcion="<%= productos.descripcion %>"
-                            data-precio="<%= productos.precio %>"
-                            data-stock="<%= productos.stock %>"
-                            data-imagen="<%= productos.imagen %>"
-                            data-habilitado="<%= productos.habilitado %>">
-                            <i class="fa-solid fa-file-pen"></i>
-                        </button>
-                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarProducto"
-                            data-id="<%= productos._id %>">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                        
-                    </td>
+                    <th scope="col">Referencia</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Habilitado</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Accion</th>
+        
                 </tr>
-            <% }) %>
-        <% } %>
-    
-    </tbody>
-</table>
-
-<button 
-    type="button" 
-    class="btn btn-success" 
-    style="margin-bottom: 15px;" 
-    data-bs-toggle="modal" 
-    data-bs-target="#crearProducto">
-    Crear Nuevo Producto
-    <i 
-    class="fa-solid fa-plus" 
-    style="margin-left: 9px;">
-    </i>
-</button>
-
+            </thead>
+            <tbody>
+        
+                <% if (productos.length > 0) { %>
+                    <% productos.forEach(productos => { %>
+                        <tr>
+                            <td><%= productos.referencia %></td>      
+                            <td><%= productos.nombre %></td> 
+                            <td><%= productos.descripcion %></td> 
+                            <td><%= productos.precio %></td>     
+                            <td><%= productos.stock %></td>          
+                            <td>imagen</td> 
+                            <td><%= productos.habilitado %></td>          
+                            <td><%= productos.usuario %></td>
+                            <td class="btn-formularios">
+        
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleProducto"
+                                    data-id="<%= productos._id %>">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            
+                                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarProducto"
+                                    data-id="<%= productos._id %>"
+                                    data-referencia="<%= productos.referencia %>"
+                                    data-nombre="<%= productos.nombre %>"
+                                    data-descripcion="<%= productos.descripcion %>"
+                                    data-precio="<%= productos.precio %>"
+                                    data-stock="<%= productos.stock %>"
+                                    data-imagen="<%= productos.imagen %>"
+                                    data-habilitado="<%= productos.habilitado %>">
+                                    <i class="fa-solid fa-file-pen"></i>
+                                </button>
+        
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarProducto"
+                                    data-id="<%= productos._id %>">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                                
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+        
+        <button 
+            type="button" 
+            class="btn btn-success" 
+            style="margin-bottom: 15px;" 
+            data-bs-toggle="modal" 
+            data-bs-target="#crearProducto">
+            Crear Nuevo Producto
+            <i 
+            class="fa-solid fa-plus" 
+            style="margin-left: 9px;">
+            </i>
+        </button>
+    </div>
+</div>
 
 <!--=========================***CONTENIDO***================================-->
 
