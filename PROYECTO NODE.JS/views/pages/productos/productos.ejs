@@ -13,13 +13,13 @@
 
 <!--=========================***CONTENIDO***================================-->
 
-<div class="container my-5">
-    <div class="row">
-        <table id="example" class="table table-striped" style="width:100%">
+<div class="container my-5 contenedorCentrado">
+    <div class="row ">
+        <table id="example" class="table table-striped " style="width:100%">
             <caption>
                 Tabla Productos
             </caption>
-            <thead>
+            <thead class="texto-centrado">
                 <tr>
                     <th scope="col">Referencia</th>
                     <th scope="col">Nombre</th>
@@ -76,10 +76,9 @@
                 <% } %>
             </tbody>
         </table>
-        
         <button 
             type="button" 
-            class="btn btn-success" 
+            class="btn btn-success btn-crear" 
             style="margin-bottom: 15px;" 
             data-bs-toggle="modal" 
             data-bs-target="#crearProducto">
