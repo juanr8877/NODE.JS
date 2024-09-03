@@ -15,6 +15,7 @@ router.post('/productos/editar/:id', productos.actualizarProductos);
 
 //Clientes
 router.get('/clientes', clientes.listarClientes);
+router.get('/clientes/detalles/:id', clientes.detalleClientes);
 
 //Pedidos
 router.get('/pedidos', pedidos.listarPedidos);

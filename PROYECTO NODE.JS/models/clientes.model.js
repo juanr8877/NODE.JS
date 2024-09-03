@@ -1,29 +1,30 @@
 const mongoose = require('../config/connection');
+const Schema = mongoose.Schema;
 
-const clienteSchema = new mongoose.Schema({  
-    nombreCompleto: {
+const clienteSchema = new mongoose.Schema({
+    nombre: {
         type: String,
-        required: [true, 'Asignar un nombre es obligatorio'],
-        trim: true,
-        minlength: [8, 'Debe ser el nombre completo'],
-        maxLenght: [150, 'El nombre completo ingresado es muy extenso']
+        required: [true, 'Ingrese el nombre completo']
     },
-    telefono: { 
-        type: String, 
-        required: [true , 'El telefono es requerido'],
+    telefono: {
+        type: String,
+        required: true,
         trim: true,
-        minlength: [9, 'Si es un número fijo, debes agregar el indicativo del pais ej: 604 ...'],
-        maxLenght: [14, 'El teléfono no puede tener mas de 10 carácteres.']
+        minLength:[9, 'El telefono ingresado es muy corto'],
+        maxLength:[14, 'El telefono ingresado es muy extenso']
     },
-    direccion : { 
-        type: String, 
-        required: [true , 'La direccion es requerido'],
-        trim: true,
-        minlength: [9, 'La direccion ingresada es muy corta'],
+    direccion: {
+        type: String,
+        trim: true
     },
-    habilitado: { 
-        type: Boolean, 
-        default: true 
+    habilitado: {
+        type: Boolean,
+        default: true
+    },
+    usuario:{
+        type: Schema.Types.ObjectId,
+        ref: 'usuario',
+        required: true
     }
 });
 

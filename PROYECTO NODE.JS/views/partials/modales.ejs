@@ -250,6 +250,44 @@
 </div>
 
 <!--========================================================== -->
+<!--MODAL DETALLE CLIENTES-->
+<!--========================================================== -->
+
+<div class="modal fade" id="detalleCliente" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content modal-detalle">
+
+            <div class="container mt-5 formDetalle">
+                <h2>Detalle Cliente</h2>
+                <hr>
+                <table id="detalleClienteTable" class="table table-striped">
+                    <tr>
+                        <th>Nombre:</th>
+                        <td id="detalleClienteNombre"></td>
+                    </tr>
+                    <tr>
+                        <th>Telefono:</th>
+                        <td id="detalleClienteTelefono"></td>
+                    </tr>
+                    <tr>
+                        <th>Direccion:</th>
+                        <td id="detalleClienteDireccion"></td>
+                    </tr>
+                    <tr>
+                        <th>Habilitado:</th>
+                        <td id="detalleClienteHabilitado"></td>
+                    </tr>
+                    <tr>
+                        <th>Usuario:</th>
+                        <td id="detalleClienteUsuario"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--========================================================== -->
 <!--Scrip para editar prodcutos-->
 <!--========================================================== -->
 
@@ -291,7 +329,7 @@
         form.attr('action', '/api/productos/aliminar/' + id);
     });
 
-    // Configurar el formulario de detalle cuando se abre el modal
+    // Configurar el formulario de detalle producto cuando se abre el modal
 
     document.addEventListener('DOMContentLoaded', function () {
         const verModal = document.getElementById('detalleProducto');
@@ -315,5 +353,28 @@
         });
     });
     
+
+     // Configurar el formulario de detalle clientes cuando se abre el modal
+
+     document.addEventListener('DOMContentLoaded', function () {
+        const verModal = document.getElementById('detalleCliente');
+
+        verModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const clienteId = button.getAttribute('data-id');
+
+            fetch(`/api/clientes/detalles/${clienteId}`)
+                .then(response => response.json())
+                .then(clientes => {
+                    // Rellenar los campos del modal con los datos del producto
+                    document.getElementById('detalleClienteNombre').textContent = clientes.nombre;
+                    document.getElementById('detalleClienteTelefono').textContent = clientes.telefono;
+                    document.getElementById('detalleClienteDireccion').textContent = clientes.direccion;
+                    document.getElementById('detalleClienteHabilitado').textContent = clientes.habilitado;
+                    document.getElementById('detalleClienteUsuario').textContent = clientes.usuario;
+                })
+                .catch(error => console.error('Error al cargar los detalles del producto:', error));
+        });
+    });
 
 </script>

@@ -73,9 +73,9 @@ let dataTableOptions = {
     lengthMenu: [3,6,9,12],
     columnDefs: [
       //para habilitar y deshabilitar ordenamiento en coloumnas
-      {orderable: false, target: [1,2,3,4,5]},
+    //   {orderable: false, target: [3,4]},
       //para habilitar y deshabilitar los filtro en columnas
-      {searchable: false, target: [0,1,2,3,4,5]},
+    //   {searchable: false, target: [0,1,2,3,4,5]},
       //para habilitar el tamaño de las columnas
       {width: '5%', target: [7]}
     ],
