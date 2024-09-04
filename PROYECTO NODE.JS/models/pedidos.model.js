@@ -1,27 +1,50 @@
 const mongoose = require('../config/connection');
+const Schema = mongoose.Schema;
 
-const pedidoSchema = new mongoose.Schema({  
+const pedidoSchema = new mongoose.Schema({
     cliente: {
-        type: String,
-        required: [true, 'Asignar un nombre es obligatorio'],
-        trim: true,
-        minlength: [8, 'Debe ser el nombre completo'],
-        maxLenght: [150, 'El nombre completo ingresado es muy extenso']
+      type: Schema.Types.ObjectId,
+      ref: 'Cliente',
+      required: [true, 'El cliente es obligatorio'],
     },
-    carrito: { 
-        type: Array, 
-        required: [true , 'Debe agregar almenos un producto.']
+    carrito: [
+      {
+        producto: {
+          type: Schema.Types.ObjectId,
+          ref: 'Producto',
+          required: [true, 'El producto es obligatorio'],
+        },
+        cantidad: {
+          type: Number,
+          required: [true, 'La cantidad es obligatoria'],
+          min: [1, 'La cantidad debe ser al menos 1'],
+        },
+      }
+    ],
+    subtotal: {
+      type: Number,
+      required: [true, 'El subtotal es obligatorio'],
+      min: [0, 'El subtotal no puede ser negativo'],
     },
-    Subtotal : { 
-        type: Number, 
-        required: [true , 'La direccion es requerido'],
-        trim: true
+    impuesto: {
+      type: Number,
+      required: [true, 'El impuesto es obligatorio'],
+      min: [0, 'El impuesto no puede ser negativo'],
     },
-    habilitado: { 
-        type: Boolean, 
-        default: true 
+    total: {
+      type: Number,
+      required: [true, 'El total es obligatorio'],
+      min: [0, 'El total no puede ser negativo'],
+    },
+    estado: {
+      type: [String],
+      enum: {
+        values: ['Pendiente', 'En proceso', 'Enviado', 'Entregado', 'Cancelado'],
+        message: 'Estado inválido',
+      },
+      required: [true, 'El estado es obligatorio'],
     }
-});
+  });
 
 const  pedidoModel = mongoose.model('pedidos', pedidoSchema);
 

@@ -1,0 +1,36 @@
+<div class="modal fade" id="RegistrarseModal" tabindex="-1" aria-labelledby="registrarseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registrarseModalLabel">Registro de Cliente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/v1/clientes/registrar" method="POST">
+                    <div class="form-group mb-3">
+                        <label for="correoUsuario">Correo Electrónico:</label>
+                        <input type="email" id="correoUsuario" name="correoUsuario" required class="form-control">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="passUsuario">Contraseña:</label>
+                        <input type="password" id="passUsuario" name="passUsuario" required class="form-control">
+                    </div>
+                    <input type="text" id="rolUsuario" name="rolUsuario" required class="form-control" hidden value="cliente">
+                    <div class="form-group mb-3">
+                        <label for="nombreCliente">Nombre del Cliente:</label>
+                        <input type="text" id="nombreCliente" name="nombreCliente" required class="form-control">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="telefonoCliente">Teléfono:</label>
+                        <input type="tel" id="telefonoCliente" name="telefonoCliente" required class="form-control">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="direccionCliente">Dirección:</label>
+                        <input type="text" id="direccionCliente" name="direccionCliente" required class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>

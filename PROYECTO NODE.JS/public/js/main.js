@@ -72,12 +72,9 @@ let dataTableOptions = {
   ],
     lengthMenu: [3,6,9,12],
     columnDefs: [
-      //para habilitar y deshabilitar ordenamiento en coloumnas
-    //   {orderable: false, target: [3,4]},
-      //para habilitar y deshabilitar los filtro en columnas
-    //   {searchable: false, target: [0,1,2,3,4,5]},
-      //para habilitar el tamaño de las columnas
-      {width: '5%', target: [7]}
+        { orderable: false, targets: [-1, -2] },//para habilitar y deshabilitar ordenamiento en coloumnas
+        { searchable: false, targets: '_all' }, // Deshabilitar búsqueda en todas las columnas
+        { width: '8%', targets: '_all' }  // Aplicar un ancho del 5% a todas las columnas
     ],
     //Para que muestre los 5 primeros registros
     pageLength: 5,

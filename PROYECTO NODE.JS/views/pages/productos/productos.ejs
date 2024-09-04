@@ -28,7 +28,6 @@
                     <th scope="col">Stock</th>
                     <th scope="col">Imagen</th>
                     <th scope="col">Habilitado</th>
-                    <th scope="col">Usuario</th>
                     <th scope="col">Accion</th>
         
                 </tr>
@@ -42,10 +41,9 @@
                             <td><%= productos.nombre %></td> 
                             <td><%= productos.descripcion %></td> 
                             <td><%= productos.precio %></td>     
-                            <td><%= productos.stock %></td>          
-                            <td>imagen</td> 
+                            <td><%= productos.stock %></td>
+                            <td><%= productos.imagen %></td>                    
                             <td><%= productos.habilitado %></td>          
-                            <td><%= productos.usuario %></td>
                             <td class="btn-formularios">
         
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleProducto"

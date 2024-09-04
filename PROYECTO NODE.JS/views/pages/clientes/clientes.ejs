@@ -35,7 +35,7 @@
                 <% if (clientes.length > 0) { %>
                     <% clientes.forEach(clientes => { %>
                         <tr>
-                            <td><%= clientes.nombreCompleto %></td>      
+                            <td><%= clientes.nombre %></td>      
                             <td><%= clientes.telefono %></td> 
                             <td><%= clientes.direccion %></td> 
                             <td><%= clientes.habilitado %></td>     
@@ -43,10 +43,22 @@
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleCliente"
                                 data-id="<%= clientes._id %>">
                                 <i class="fa-solid fa-eye"></i>
-                            </button>                               
-                             <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
-                                <a href="" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
-                            </td>
+                            </button> 
+
+                            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarCliente"
+                                    data-id="<%= clientes._id %>"
+                                    data-nombre="<%= clientes.nombre %>"
+                                    data-telefono="<%= clientes.telefono %>"
+                                    data-direccion="<%= clientes.direccion %>"
+                                    data-habilitado="<%= clientes.habilitado %>"
+                                    data-usuario="<%= clientes.usuario %>">
+                                    <i class="fa-solid fa-file-pen"></i>
+                            </button>
+
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarCliente"
+                                data-id="<%= clientes._id %>">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>                            
                         </tr>
                     <% }) %>
                 <% } %>

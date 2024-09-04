@@ -20,3 +20,40 @@ exports.detalleClientes = async (req, res) => {
         res.status(500).json({ error: 'No se pudo encontrar el cliente' });
     }
 };
+
+exports.eliminarClientes = async (req, res) => {
+    try {
+        await clientesModel.findByIdAndDelete(req.params.id);
+        res.redirect('/api/clientes');
+    } catch (error) {
+        res.status(500).json({ mensaje: "Se presentó un error" });
+    }
+};
+
+exports.actualizarClientes = async (req, res) => {
+    try {
+        const {id} = req.params; // Tomar el ID del cliente de los parámetros
+        const {nombre, telefono, direccion, usuario, habilitado} = req.body; // Tomar los datos del cuerpo de la solicitud
+
+        // Crear objeto con los datos actualizados
+        const datosActualizados = {
+            nombre: nombre,
+            telefono: telefono,
+            direccion: direccion,
+            habilitado: habilitado,
+            usuario: usuario
+        };
+
+        // Intentar actualizar el cliente
+        const clienteActualizado = await clientesModel.findByIdAndUpdate(id, datosActualizados, { new: true, runValidators: true });
+
+        if (!clienteActualizado) {
+            return res.status(404).json({ mensaje: "Cliente no encontrado" });
+        }
+
+        res.redirect("/api/clientes"); // Redirigir a la lista de clientes después de la actualización
+    } catch (error) {
+        console.error("Error al actualizar el cliente:", error);
+        res.status(500).json({ mensaje: "Se presentó un error al editar el cliente", error: error.message });
+    }
+};
