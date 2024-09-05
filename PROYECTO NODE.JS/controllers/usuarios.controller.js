@@ -9,3 +9,12 @@ exports.listarUsuarios = async (req, res) => {
         console.log(error)
     }
 };
+
+exports.insertarUsuarios = async (nuevoUsuario) => {
+
+    try{
+        return await usuariosModel(nuevoUsuario).save();
+    }catch(error){
+        console.log(error)
+    }
+};

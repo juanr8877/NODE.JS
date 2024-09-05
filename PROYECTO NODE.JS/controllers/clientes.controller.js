@@ -1,4 +1,7 @@
 const clientesModel = require('../models/clientes.model');
+const usuarioController = require ('./usuarios.controller');
+const nodemailer = require('../views/utils/nodemailer')
+
 
 exports.listarClientes = async (req, res) => {
 
@@ -55,5 +58,44 @@ exports.actualizarClientes = async (req, res) => {
     } catch (error) {
         console.error("Error al actualizar el cliente:", error);
         res.status(500).json({ mensaje: "Se presentó un error al editar el cliente", error: error.message });
+    }
+};
+
+
+exports.insertarClientes = async (nuevoCliente) => {
+    try{
+        return await clientesModel(nuevoCliente).save();
+    }catch(error){
+        console.log(error)
+    }
+};
+
+
+exports.registroCompleto = async (req, res) => {
+    try {
+        const usuario = {
+            correo: req.body.correoUsuario,
+            pass: req.body.passUsuario,
+            rol: req.body.rolUsuario,
+            habilitado: true
+        };
+        console.log(usuario);
+        let usuarito = await usuarioController.insertarUsuarios(usuario);
+
+        console.log(usuarito);
+        
+        const client = {
+            nombre: req.body.nombreCliente,
+            telefono: req.body.telefonoCliente,
+            direccion: req.body.direccionCliente,
+            habilitado: true,
+            usuario: usuarito._id 
+        };
+        await exports.insertarClientes(client);
+        await emailService.sendEmail(usuario.correo, "Confirmación de Registro", "Bienvenido a la tienda en línea más top de todo el mundo");
+        res.redirect('/v1/landing');
+    } catch (error) {
+        res.status(500).json({ mensaje: "Se presentó un error" });
+        console.error(error);
     }
 };

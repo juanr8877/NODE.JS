@@ -356,12 +356,12 @@
     </div>
 </div>
 
-<!--========================================================== -->
-<!--Scrip para editar prodcutos-->
-<!--========================================================== -->
-
 <script>
-    // Configurar el formulario de edición producto cuando se abre el modal
+
+//--========================================================== -->
+//--Scrip para editar prodcutos-->
+//--========================================================== -->
+
     $('#editarProducto').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Botón que activó el modal
         var id = button.data('id');
@@ -386,7 +386,10 @@
     });
 
 
-    // Configurar el formulario de eliminar producto cuando se abre el modal
+//--========================================================== -->
+//--Scrip para eliminar prodcutos-->
+//--========================================================== -->
+
     $('#eliminarProducto').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Botón que activó el modal
         var id = button.data('id'); // Extraer el id del cliente
@@ -399,7 +402,10 @@
     });
 
 
-    // Configurar el formulario de detalle producto cuando se abre el modal
+//--========================================================== -->
+//--Scrip para ver el detalle del prodcuto-->
+//--========================================================== -->
+
     document.addEventListener('DOMContentLoaded', function () {
         const verModal = document.getElementById('detalleProducto');
 
@@ -423,8 +429,10 @@
     });
     
 
+//--========================================================== -->
+//--Scrip para editar cliente-->
+//--========================================================== -->
 
-    // Configurar el formulario de editar cliente cuando se abre el modal
     $('#editarCliente').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Botón que activó el modal
         var id = button.data('id');
@@ -443,7 +451,9 @@
         modal.find('#usuario').val(usuario);
     });
 
-     // Configurar el formulario de detalle clientes cuando se abre el modal
+//--========================================================== -->
+//--Scrip para ver detalle del cliente-->
+//--========================================================== -->
 
      document.addEventListener('DOMContentLoaded', function () {
         const verModal = document.getElementById('detalleCliente');
@@ -466,7 +476,10 @@
         });
     });
 
-    // Configurar el formulario de eliminar cliente cuando se abre el modal
+//--========================================================== -->
+//--Scrip para eliminar cliente-->
+//--========================================================== -->
+
     $('#eliminarCliente').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Botón que activó el modal
         var id = button.data('id'); // Extraer el id del cliente
