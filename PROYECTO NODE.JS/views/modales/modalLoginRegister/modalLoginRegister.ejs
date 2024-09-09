@@ -1,0 +1,83 @@
+<!--========================================================== -->
+<!--MODALE LOGIN-->
+<!--========================================================== -->
+
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form class="formulario-modal">
+                
+                <h1>Login</h1>
+
+                <div class="contenedor-modal">
+
+                    <div class="input-contenedor">
+                        <i class="fas fa-envelope icon"></i>
+                        <input type="text" placeholder="Correo Electronico">
+                    </div>
+
+                    <div class="input-contenedor">
+                        <i class="fas fa-key icon"></i>
+                        <input type="password" placeholder="Contraseña">
+                    </div>
+
+                    <input type="submit" value="Login" class="button">
+                    <p>¿No tienes una cuenta? <a id="link-to-register" class="link" href="#">Regístrate</a></p>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--========================================================== -->
+<!--MODALE REGISTER-->
+<!--========================================================== -->
+
+<div class="modal fade" id="register" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form class="formulario-modal" action="/api/clientes/registrar/" method="POST">
+
+                <h1>Regístrate</h1>
+
+                <div class="contenedor-modal">
+
+                    <div class="input-contenedor">
+                        <i class="fas fa-user icon"></i>
+                        <input type="text" id="nombreCliente" name="nombreCliente" placeholder="Nombre Completo" required>
+                    </div>
+
+                    <div class="input-contenedor">
+                        <i class="fas fa-envelope icon"></i>
+                        <input type="text" id="correoUsuario" name="correoUsuario" placeholder="Correo Electronico" required>
+                    </div>
+
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-phone icon"></i>
+                        <input type="text" id="telefonoCliente" name="telefonoCliente" placeholder="Telefono" required>
+                    </div>
+
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-route icon"></i>
+                        <input type="text" id="direccionCliente" name="direccionCliente" placeholder="Direccion" required>
+                    </div>
+
+                    <div class="input-contenedor">
+                        <i class="fas fa-key icon"></i>
+                        <input type="password" id="passUsuario" name="passUsuario" placeholder="Contraseña" required>
+                    </div>
+
+                    <input type="submit" value="Regístrate" class="button">
+                    <p>¿Ya tienes una cuenta? <a id="link-to-login" class="link" href="#">Iniciar Sesión</a></p>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

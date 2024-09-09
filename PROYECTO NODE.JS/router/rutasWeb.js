@@ -18,8 +18,7 @@ router.get('/clientes', clientes.listarClientes);
 router.get('/clientes/detalles/:id', clientes.detalleClientes);
 router.post('/clientes/aliminar/:id', clientes.eliminarClientes);
 router.post('/clientes/editar/:id', clientes.actualizarClientes);
-
-
+router.post('/clientes/registrar/', clientes.registroCompleto);
 
 //Pedidos
 router.get('/pedidos', pedidos.listarPedidos);

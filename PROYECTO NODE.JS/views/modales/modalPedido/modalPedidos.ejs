@@ -1,0 +1,210 @@
+<!--========================================================== -->
+<!--MODALE EDITAR PEDIDOS-->
+<!--========================================================== -->
+
+<div class="modal fade" id="editarPedido" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="container mt-5 p-4">
+                <h2>Editar Pedido</h2>
+                <form id="editarPedidoForm" method="POST">
+
+                    <!-- Cliente -->
+                    <div class="mb-3">
+                        <label for="cliente" class="form-label">Cliente</label>
+                        <select class="form-select" id="cliente" name="cliente" required>
+                            <!-- Aquí deberías cargar dinámicamente los clientes disponibles -->
+                            <option value="clienteId1">Cliente 1</option>
+                            <option value="clienteId2">Cliente 2</option>
+                        </select>
+                    </div>
+
+                    <!-- Carrito (productos y cantidades) -->
+                    <div class="mb-3">
+                        <label for="carrito" class="form-label">Productos</label>
+                        <div id="carrito">
+                            <!-- Un ejemplo de producto en el carrito -->
+                            <div class="d-flex justify-content-between mb-2">
+                                <select class="form-select me-2" name="carrito[0][producto]" required>
+                                    <!-- Productos disponibles -->
+                                    <option value="productoId1">Producto 1</option>
+                                    <option value="productoId2">Producto 2</option>
+                                </select>
+                                <input type="number" class="form-control" name="carrito[0][cantidad]" min="1" required placeholder="Cantidad">
+                            </div>
+                            <!-- Puedes duplicar esta sección para más productos -->
+                        </div>
+                    </div>
+
+                    <!-- Subtotal -->
+                    <div class="mb-3">
+                        <label for="subtotal" class="form-label">Subtotal</label>
+                        <input type="number" class="form-control" id="subtotal" name="subtotal" min="0" required>
+                    </div>
+
+                    <!-- Impuesto -->
+                    <div class="mb-3">
+                        <label for="impuesto" class="form-label">Impuesto</label>
+                        <input type="number" class="form-control" id="impuesto" name="impuesto" min="0" required>
+                    </div>
+
+                    <!-- Total -->
+                    <div class="mb-3">
+                        <label for="total" class="form-label">Total</label>
+                        <input type="number" class="form-control" id="total" name="total" min="0" required>
+                    </div>
+
+                    <!-- Estado -->
+                    <div class="mb-3">
+                        <label for="estado" class="form-label">Estado del Pedido</label>
+                        <select class="form-select" id="estado" name="estado" required>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="En proceso">En proceso</option>
+                            <option value="Enviado">Enviado</option>
+                            <option value="Entregado">Entregado</option>
+                            <option value="Cancelado">Cancelado</option>
+                        </select>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="d-flex justify-content-between" style="margin-bottom: 10px;">
+                        <button type="submit" class="btn btn-success">Guardar Cambios <i class="fa-solid fa-check" style="margin-left: 10px;"></i></button>
+                        <a href="/api/clientes" class="btn btn-danger">Cancelar</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--========================================================== -->
+<!--MODAL DETALLE PEDIDOS-->
+<!--========================================================== -->
+
+<div class="modal fade" id="detalleCliente" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content modal-detalle">
+
+            <div class="container mt-5 formDetalle">
+                <h2>Detalle Cliente</h2>
+                <hr>
+                <table id="detalleClienteTable" class="table table-striped">
+                    <tr>
+                        <th>Nombre:</th>
+                        <td id="detalleClienteNombre"></td>
+                    </tr>
+                    <tr>
+                        <th>Telefono:</th>
+                        <td id="detalleClienteTelefono"></td>
+                    </tr>
+                    <tr>
+                        <th>Direccion:</th>
+                        <td id="detalleClienteDireccion"></td>
+                    </tr>
+                    <tr>
+                        <th>Habilitado:</th>
+                        <td id="detalleClienteHabilitado"></td>
+                    </tr>
+                    <tr>
+                        <th>Usuario:</th>
+                        <td id="detalleClienteUsuario"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--========================================================== -->
+<!--MODAL ELIMINAR PEDIDOS-->
+<!--========================================================== -->
+
+<div class="modal fade" id="eliminarCliente" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="container p-4 text-center ">
+                <h2>Eliminar Cliente</h2>
+                <form id="formEliminarCliente" method="POST">
+                    <input type="hidden" id="clienteId" name="ClienteId">
+                    <p>¿Estás seguro de que deseas eliminar este cliente?</p>
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!----------------------------SCRIPTS----------------------------->
+
+<script>
+
+//--========================================================== -->
+//--Scrip para editar pedidos-->
+//--========================================================== -->
+
+$('#editarCliente').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); 
+        var id = button.data('id');
+        var nombre = button.data('nombre');
+        var telefono = button.data('telefono');
+        var direccion = button.data('direccion');
+        var habilitado = button.data('habilitado');
+        var usuario = button.data('usuario');
+       
+        var modal = $(this);
+        modal.find('#editarClienteForm').attr('action', '/api/clientes/editar/' + id);
+        modal.find('#nombre').val(nombre);
+        modal.find('#telefono').val(telefono);
+        modal.find('#direccion').val(direccion);
+        modal.find('#habilitado').val(habilitado);
+        modal.find('#usuario').val(usuario);
+    });
+
+//--========================================================== -->
+//--Scrip para ver detalle del pedidos-->
+//--========================================================== -->
+
+document.addEventListener('DOMContentLoaded', function () {
+const verModal = document.getElementById('detalleCliente');
+
+verModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const clienteId = button.getAttribute('data-id');
+
+        fetch(`/api/clientes/detalles/${clienteId}`)
+            .then(response => response.json())
+            .then(clientes => {
+                
+                document.getElementById('detalleClienteNombre').textContent = clientes.nombre;
+                document.getElementById('detalleClienteTelefono').textContent = clientes.telefono;
+                document.getElementById('detalleClienteDireccion').textContent = clientes.direccion;
+                document.getElementById('detalleClienteHabilitado').textContent = clientes.habilitado;
+                document.getElementById('detalleClienteUsuario').textContent = clientes.usuario;
+            })
+            .catch(error => console.error('Error al cargar los detalles del producto:', error));
+    });
+});
+
+//--========================================================== -->
+//--Scrip para eliminar pedidos-->
+//--========================================================== -->
+
+$('#eliminarCliente').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); 
+    var id = button.data('id'); 
+
+    var modal = $(this);
+    var form = modal.find('#formEliminarCliente');
+    
+    form.attr('action', '/api/clientes/aliminar/' + id);
+});
+
+</script>

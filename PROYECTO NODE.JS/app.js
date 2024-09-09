@@ -7,6 +7,7 @@ require('dotenv').config();
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }))
+
 // parse application/json
 app.use(bodyParser.json())
 

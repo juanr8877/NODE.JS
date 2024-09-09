@@ -1,3 +1,7 @@
+//--========================================================== -->
+//--Scrip para el index-->
+//--========================================================== -->
+
 let app = document.getElementById('typewriter');
  
 let typewriter = new Typewriter(app, {
@@ -21,13 +25,13 @@ typewriter
         event.preventDefault();
         var loginModal = bootstrap.Modal.getInstance(document.getElementById('login'));
         loginModal.hide();
-        var registerModal = new bootstrap.Modal(document.getElementById('logout'));
+        var registerModal = new bootstrap.Modal(document.getElementById('register'));
         registerModal.show();
     });
 
     document.getElementById('link-to-login').addEventListener('click', function(event) {
         event.preventDefault();
-        var registerModal = bootstrap.Modal.getInstance(document.getElementById('logout'));
+        var registerModal = bootstrap.Modal.getInstance(document.getElementById('register'));
         registerModal.hide();
         var loginModal = new bootstrap.Modal(document.getElementById('login'));
         loginModal.show();

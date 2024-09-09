@@ -13,37 +13,45 @@
 
 <!--=========================***CONTENIDO***================================-->
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">correo</th>
-            <th scope="col">pass</th>
-            <th scope="col">rol</th>
-            <th scope="col">Habilitado</th>
-            <th scope="col">Accion</th>
-
-        </tr>
-    </thead>
-    <tbody>
-
-        <% if (usuarios.length > 0) { %>
-            <% usuarios.forEach(usuarios => { %>
+<div class="container my-5 contenedorCentrado">
+    <div class="row ">
+        <table id="example" class="table table-striped contenedorCentrado" style="width:100%">
+            <caption>
+                Tabla Usuarios
+            </caption>
+            <thead>
                 <tr>
-                    <td><%= usuarios.correo %></td>      
-                    <td><%= usuarios.pass %></td> 
-                    <td><%= usuarios.rol %></td> 
-                    <td><%= usuarios.habilitado %></td>     
-                    <td class="btn-formularios">
-                        <a href="" class="btn btn-warning"><i class="fa-solid fa-file-pen"></i></a>
-                        <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
-                        <a href="" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
-                    </td>
+                    <th scope="col">correo</th>
+                    <th scope="col">pass</th>
+                    <th scope="col">rol</th>
+                    <th scope="col">Habilitado</th>
+                    <th scope="col">Accion</th>
+        
                 </tr>
-            <% }) %>
-        <% } %>
-    
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+        
+                <% if (usuarios.length > 0) { %>
+                    <% usuarios.forEach(usuarios => { %>
+                        <tr>
+                            <td><%= usuarios.correo %></td>      
+                            <td><%= usuarios.pass %></td> 
+                            <td><%= usuarios.rol %></td> 
+                            <td><%= usuarios.habilitado %></td>     
+                            <td class="btn-formularios">
+                                <a href="" class="btn btn-warning"><i class="fa-solid fa-file-pen"></i></a>
+                                <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                <a href="" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+            
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 <!--=========================***CONTENIDO***================================-->
 
@@ -54,8 +62,3 @@
 
 <%- include('../../partials/footer') %>
 
-<!--========================================================== -->
-<!--MODALE LOGIN Y LOGOUT-->
-<!--========================================================== -->
-
-<%- include('../../partials/modales') %>

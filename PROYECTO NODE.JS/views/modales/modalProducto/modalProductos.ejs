@@ -1,0 +1,252 @@
+<!--========================================================== -->
+<!--MODALE CREAR PRODUCTO-->
+<!--========================================================== -->
+
+<div class="modal fade" id="crearProducto" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="container mt-5 p-4">
+                <h2>Crear Producto</h2>
+                <form action="/api/productos/crear" method="POST">
+                    <div class="mb-3">
+                        <label for="referencia" class="form-label">Referencia</label>
+                        <input type="text" class="form-control"  name="referencia" placeholder="Ingrese la referencia del producto" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control"  name="nombre" placeholder="Ingrese el nombre del producto" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" name="descripcion" rows="3" placeholder="Ingrese la descripción del producto" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" class="form-control"  name="precio" placeholder="Ingrese el precio del producto" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input type="number" class="form-control" name="stock" placeholder="Ingrese la cantidad en stock" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen (URL)</label>
+                        <input type="text" class="form-control" name="imagen" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="habilitado" class="form-label">Habilitado</label>
+                        <select class="form-select" required>
+                            <option value="true">Sí</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                    <!-- <div class="mb-3">
+                        <label for="usuario" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingrese el nombre del usuario" required>
+                    </div> -->
+                    <div class="d-flex justify-content-between" style="margin-bottom: 10px;">
+                        <button type="submit" class="btn btn-success">Crear Producto <i class="fa-solid fa-check" style="margin-left: 10px;"></i></button>
+                        <a href="/api/productos" class="btn btn-danger">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--========================================================== -->
+<!--MODALE EDITAR PRODUCTOS-->
+<!--========================================================== -->
+
+<div class="modal fade" id="editarProducto" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="container mt-5 p-4 ">
+                <h2>Editar Producto</h2>
+                <form id="editarProductoForm" method="POST">
+                    <div class="mb-3">
+                        <label for="referencia" class="form-label">Referencia</label>
+                        <input type="text" class="form-control" id="referencia"  name="referencia" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre"  name="nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <input class="form-control" id="descripcion" name="descripcion" rows="3" required></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" class="form-control" id="precio" name="precio" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input type="number" class="form-control" id="stock" name="stock" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen (URL)</label>
+                        <input type="text" class="form-control" id="imagen" name="imagen" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="habilitado" class="form-label">Habilitado</label>
+                        <select class="form-select" id="habilitado" name="habilitado" required>
+                            <option value="true">Sí</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-between" style="margin-bottom: 10px;">
+                        <button type="submit" class="btn btn-success">Guardar Cambios <i class="fa-solid fa-check" style="margin-left: 10px;"></i></button>
+                        <a href="/api/productos" class="btn btn-danger">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--========================================================== -->
+<!--MODAL ELIMINAR PRODUCTOS-->
+<!--========================================================== -->
+
+<div class="modal fade" id="eliminarProducto" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="container p-4 text-center ">
+                <h2>Editar Producto</h2>
+                <form id="formEliminarProducto" method="POST">
+                    <input type="hidden" id="productoId" name="productoId">
+                    <p>¿Estás seguro de que deseas eliminar este producto?</p>
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!--========================================================== -->
+<!--MODAL DETALLE PRODUCTOS-->
+<!--========================================================== -->
+
+<div class="modal fade" id="detalleProducto" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content modal-detalle">
+
+            <div class="container mt-5 formDetalle">
+                <h2>Detalle Producto</h2>
+                <hr>
+                <table id="detalleProductoTable" class="table table-striped">
+                    <tr>
+                        <th>Referencia:</th>
+                        <td id="detalleReferencia"></td>
+                    </tr>
+                    <tr>
+                        <th>Nombre:</th>
+                        <td id="detalleNombre"></td>
+                    </tr>
+                    <tr>
+                        <th>Descripción:</th>
+                        <td id="detalleDescripcion"></td>
+                    </tr>
+                    <tr>
+                        <th>Precio:</th>
+                        <td id="detallePrecio"></td>
+                    </tr>
+                    <tr>
+                        <th>Stock:</th>
+                        <td id="detalleStock"></td>
+                    </tr>
+                    <tr>
+                        <th>Imagen:</th>
+                        <td>
+                            <img id="detalleImagen" alt="Imagen del producto" style="width: 100px; height: auto;">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!----------------------------SCRIPTS----------------------------->
+
+<script>
+
+//--========================================================== -->
+//--Scrip para editar prodcutos-->
+//--========================================================== -->
+
+$('#editarProducto').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Botón que activó el modal
+        var id = button.data('id');
+        var referencia = button.data('referencia');
+        var nombre = button.data('nombre');
+        var descripcion = button.data('descripcion');
+        var precio = button.data('precio');
+        var stock = button.data('stock');
+        var imagen = button.data('imagen');
+        var habilitado = button.data('habilitado');
+       
+        var modal = $(this);
+        modal.find('#editarProductoForm').attr('action', '/api/productos/editar/' + id);
+        modal.find('#id').val(id);
+        modal.find('#referencia').val(referencia);
+        modal.find('#nombre').val(nombre);
+        modal.find('#descripcion').val(descripcion);
+        modal.find('#precio').val(precio);
+        modal.find('#stock').val(stock);
+        modal.find('#imagen').val(imagen);
+        modal.find('#habilitado').val(habilitado);
+    });
+
+
+//--========================================================== -->
+//--Scrip para eliminar prodcutos-->
+//--========================================================== -->
+
+$('#eliminarProducto').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Botón que activó el modal
+    var id = button.data('id'); // Extraer el id del cliente
+
+    var modal = $(this);
+    var form = modal.find('#formEliminarProducto');
+    
+    // Actualizar la acción del formulario para incluir el ID del cliente
+    form.attr('action', '/api/productos/aliminar/' + id);
+});
+
+
+//--========================================================== -->
+//--Scrip para ver el detalle del prodcuto-->
+//--========================================================== -->
+
+document.addEventListener('DOMContentLoaded', function () {
+    const verModal = document.getElementById('detalleProducto');
+
+    verModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const productoId = button.getAttribute('data-id');
+
+        fetch(`/api/productos/detalles/${productoId}`)
+            .then(response => response.json())
+            .then(productos => {
+                // Rellenar los campos del modal con los datos del producto
+                document.getElementById('detalleReferencia').textContent = productos.referencia;
+                document.getElementById('detalleNombre').textContent = productos.nombre;
+                document.getElementById('detalleDescripcion').textContent = productos.descripcion;
+                document.getElementById('detallePrecio').textContent = productos.precio;
+                document.getElementById('detalleStock').textContent = productos.stock;
+                document.getElementById('detalleImagen').textContent = productos.imagen;
+            })
+            .catch(error => console.error('Error al cargar los detalles del producto:', error));
+    });
+});
+
+</script>

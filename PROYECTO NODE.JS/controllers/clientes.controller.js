@@ -81,6 +81,10 @@ exports.registroCompleto = async (req, res) => {
         };
         console.log(usuario);
         let usuarito = await usuarioController.insertarUsuarios(usuario);
+        
+        if (!usuarito) {
+            throw new Error("Error al crear el usuario"); // Lanza un error si usuarito es undefined
+        }
 
         console.log(usuarito);
         
@@ -92,8 +96,8 @@ exports.registroCompleto = async (req, res) => {
             usuario: usuarito._id 
         };
         await exports.insertarClientes(client);
-        await emailService.sendEmail(usuario.correo, "Confirmación de Registro", "Bienvenido a la tienda en línea más top de todo el mundo");
-        res.redirect('/v1/landing');
+        await nodemailer.sendEmail(usuario.correo, "Confirmación de Registro",`Gracias por tu registro ${nombre} `);
+        res.redirect('/');
     } catch (error) {
         res.status(500).json({ mensaje: "Se presentó un error" });
         console.error(error);
