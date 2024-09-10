@@ -14,20 +14,22 @@
 
                     <div class="input-contenedor">
                         <i class="fas fa-envelope icon"></i>
-                        <input type="text" placeholder="Correo Electronico">
+                        <input type="text" id="correo" name="correo" placeholder="Correo Electronico" required>
                     </div>
 
                     <div class="input-contenedor">
                         <i class="fas fa-key icon"></i>
-                        <input type="password" placeholder="Contraseña">
+                        <input type="password" placeholder="Contraseña" id="pass" name="pass">
                     </div>
 
                     <input type="submit" value="Login" class="button">
-                    <p>¿No tienes una cuenta? <a id="link-to-register" class="link" href="#">Regístrate</a></p>
+                    <p>¿No tienes una cuenta? <a id="link-to-register" class="link">Regístrate</a></p>
 
                 </div>
 
             </form>
+            <div id="loginMessage" class="mt-3"></div>
+
         </div>
     </div>
 </div>
@@ -81,3 +83,25 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#loginForm').on('submit', function(event) {
+            event.preventDefault(); // Evita el envío normal del formulario
+
+            $.ajax({
+                url: '/api/usuarios/login', // La ruta a tu endpoint de login
+                method: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    $('#loginMessage').html('<div class="alert alert-success">Inicio de sesión exitoso</div>');
+                    // Cierra el modal si es necesario
+                    $('#loginModal').modal('hide');
+                },
+                error: function(xhr) {
+                    $('#loginMessage').html('<div class="alert alert-danger">' + xhr.responseJSON.mensaje + '</div>');
+                }
+            });
+        });
+    });
+</script>

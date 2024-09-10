@@ -25,6 +25,8 @@ router.get('/pedidos', pedidos.listarPedidos);
 
 //Usuarios
 router.get('/usuarios', usuarios.listarUsuarios);
+router.get('/usuarios/login/', usuarios.loginUsuario);
+
 
 module.exports = router;
   
