@@ -15,13 +15,12 @@ const userSchema = new mongoose.Schema({
         type: String, 
         required: [true, 'La contraseña es obligatoria'],
         minlength: [5, 'La contraseña debe tener al menos 5 caracteres'],
-        maxlength: [20, 'La contraseña debe tener máximo 20 caracteres']
     },
     rol: {
         type: String,
         required: true,
-        enum: ['admin', 'user', 'guest'],  // Definir roles permitidos
-        default: 'guest',
+        enum: ['admin', 'cliente'],  // Definir roles permitidos
+        default: 'cliente',
       },
     habilitado: { 
         type: Boolean, 

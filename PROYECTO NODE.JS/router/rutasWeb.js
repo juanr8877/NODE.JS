@@ -26,7 +26,9 @@ router.get('/pedidos', pedidos.listarPedidos);
 //Usuarios
 router.get('/usuarios', usuarios.listarUsuarios);
 router.get('/usuarios/login/', usuarios.loginUsuario);
-
+router.get('/usuarios/detalles/:id', usuarios.detalleUsuarios);
+router.post('/usuarios/aliminar/:id', usuarios.eliminarUsuarios);
+router.post('/usuarios/editar/:id', usuarios.actualizarUsuarios);
 
 module.exports = router;
   

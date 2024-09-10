@@ -39,9 +39,24 @@
                             <td><%= usuarios.rol %></td> 
                             <td><%= usuarios.habilitado %></td>     
                             <td class="btn-formularios">
-                                <a href="" class="btn btn-warning"><i class="fa-solid fa-file-pen"></i></a>
-                                <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
-                                <a href="" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleUsuario"
+                                    data-id="<%= usuarios._id %>">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+
+                                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarUsuario"
+                                        data-id="<%= usuarios._id %>"
+                                        data-correo="<%= usuarios.correo %>"
+                                        data-pass="<%= usuarios.pass %>"
+                                        data-rol="<%= usuarios.rol %>"
+                                        data-habilitado="<%= usuarios.habilitado %>">
+                                        <i class="fa-solid fa-file-pen"></i>
+                                </button>
+
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarUsuario"
+                                    data-id="<%= usuarios._id %>">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>   
                             </td>
                         </tr>
                     <% }) %>
@@ -61,4 +76,7 @@
 <!--========================================================== -->
 
 <%- include('../../partials/footer') %>
+
+<%- include('../../modales/modalUsuario/modalUsuarios.ejs') %>
+
 

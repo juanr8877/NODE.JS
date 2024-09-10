@@ -5,21 +5,23 @@
 <div class="modal fade" id="editarUsuario" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-
-            <div class="container mt-5 p-4 ">
-                <h2>Editar Cliente</h2>
+            <div class="container mt-5 p-4">
+                <h2>Editar Usuario</h2>
                 <form id="editarUsuarioForm" method="POST">
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre"  name="nombre" required>
+                        <label for="correo" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="correo" name="correo" required>
                     </div>
                     <div class="mb-3">
-                        <label for="telefono" class="form-label">Telefono</label>
-                        <input type="text" class="form-control" id="telefono"  name="telefono" required>
+                        <label for="pass" class="form-label">Contraseña</label>
+                        <input type="text" class="form-control" id="pass" name="pass" minlength="5" required>
                     </div>
                     <div class="mb-3">
-                        <label for="direccion" class="form-label">Direccion</label>
-                        <input class="form-control" id="direccion" name="direccion" rows="3" required></input>
+                        <label for="rol" class="form-label">Rol</label>
+                        <select class="form-select" id="rol" name="rol" required>
+                            <option value="admin">Admin</option>
+                            <option value="cliente">Cliente</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="habilitado" class="form-label">Habilitado</label>
@@ -28,13 +30,9 @@
                             <option value="false">No</option>
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="usuario" class="form-label">Usuario</label>
-                        <input class="form-control" id="usuario" name="usuario" rows="3" required></input>
-                    </div>
                     <div class="d-flex justify-content-between" style="margin-bottom: 10px;">
                         <button type="submit" class="btn btn-success">Guardar Cambios <i class="fa-solid fa-check" style="margin-left: 10px;"></i></button>
-                        <a href="/api/clientes" class="btn btn-danger">Cancelar</a>
+                        <a href="/api/usuarios" class="btn btn-danger">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -42,37 +40,38 @@
     </div>
 </div>
 
+
 <!--========================================================== -->
 <!--MODAL DETALLE USUARIOS-->
 <!--========================================================== -->
 
-<div class="modal fade" id="detalleCliente" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+<div class="modal fade" id="detalleUsuario" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content modal-detalle">
 
             <div class="container mt-5 formDetalle">
-                <h2>Detalle Cliente</h2>
+                <h2>Detalle Usuario</h2>
                 <hr>
-                <table id="detalleClienteTable" class="table table-striped">
+                <table id="detalleUsuarioTable" class="table table-striped">
                     <tr>
-                        <th>Nombre:</th>
-                        <td id="detalleClienteNombre"></td>
+                        <th>ID:</th>
+                        <td id="detalleUsuarioId"></td>
                     </tr>
                     <tr>
-                        <th>Telefono:</th>
-                        <td id="detalleClienteTelefono"></td>
+                        <th>Correo:</th>
+                        <td id="detalleUsuarioCorreo"></td>
                     </tr>
                     <tr>
-                        <th>Direccion:</th>
-                        <td id="detalleClienteDireccion"></td>
+                        <th>Contraseña:</th>
+                        <td id="detalleUsuarioContraseña"></td>
+                    </tr>
+                    <tr>
+                        <th>Rol:</th>
+                        <td id="detalleUsuarioRol"></td>
                     </tr>
                     <tr>
                         <th>Habilitado:</th>
-                        <td id="detalleClienteHabilitado"></td>
-                    </tr>
-                    <tr>
-                        <th>Usuario:</th>
-                        <td id="detalleClienteUsuario"></td>
+                        <td id="detalleUsuarioHabilitado"></td>
                     </tr>
                 </table>
             </div>
@@ -84,15 +83,15 @@
 <!--MODAL ELIMINAR USUARIOS-->
 <!--========================================================== -->
 
-<div class="modal fade" id="eliminarCliente" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+<div class="modal fade" id="eliminarUsuario" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <div class="container p-4 text-center ">
-                <h2>Eliminar Cliente</h2>
-                <form id="formEliminarCliente" method="POST">
-                    <input type="hidden" id="clienteId" name="ClienteId">
-                    <p>¿Estás seguro de que deseas eliminar este cliente?</p>
+                <h2>Eliminar Usuario</h2>
+                <form id="formEliminarUsuario" method="POST">
+                    <input type="hidden" id="usuarioId" name="usuarioId">
+                    <p>¿Estás seguro de que deseas eliminar este usuario?</p>
                     <div class="d-flex justify-content-between">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -112,22 +111,20 @@
 //--Scrip para editar usuarios-->
 //--========================================================== -->
 
-$('#editarCliente').on('show.bs.modal', function (event) {
+$('#editarUsuario').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); 
         var id = button.data('id');
-        var nombre = button.data('nombre');
-        var telefono = button.data('telefono');
-        var direccion = button.data('direccion');
+        var correo = button.data('correo');
+        var contraseña = button.data('pass');
+        var rol = button.data('rol');
         var habilitado = button.data('habilitado');
-        var usuario = button.data('usuario');
        
         var modal = $(this);
-        modal.find('#editarClienteForm').attr('action', '/api/clientes/editar/' + id);
-        modal.find('#nombre').val(nombre);
-        modal.find('#telefono').val(telefono);
-        modal.find('#direccion').val(direccion);
+        modal.find('#editarUsuarioForm').attr('action', '/api/usuarios/editar/' + id);
+        modal.find('#correo').val(correo);
+        modal.find('#pass').val(contraseña);
+        modal.find('#rol').val(rol);
         modal.find('#habilitado').val(habilitado);
-        modal.find('#usuario').val(usuario);
     });
 
 //--========================================================== -->
@@ -135,38 +132,46 @@ $('#editarCliente').on('show.bs.modal', function (event) {
 //--========================================================== -->
 
 document.addEventListener('DOMContentLoaded', function () {
-const verModal = document.getElementById('detalleCliente');
+    const verModal = document.getElementById('detalleUsuario');
 
-verModal.addEventListener('show.bs.modal', function (event) {
-        const button = event.relatedTarget;
-        const clienteId = button.getAttribute('data-id');
+    if (verModal) {
+        // Asegúrate de que el modal esté correctamente inicializado
+        const modal = new bootstrap.Modal(verModal);
 
-        fetch(`/api/clientes/detalles/${clienteId}`)
-            .then(response => response.json())
-            .then(clientes => {
-            
-                document.getElementById('detalleClienteNombre').textContent = clientes.nombre;
-                document.getElementById('detalleClienteTelefono').textContent = clientes.telefono;
-                document.getElementById('detalleClienteDireccion').textContent = clientes.direccion;
-                document.getElementById('detalleClienteHabilitado').textContent = clientes.habilitado;
-                document.getElementById('detalleClienteUsuario').textContent = clientes.usuario;
-            })
-            .catch(error => console.error('Error al cargar los detalles del producto:', error));
-    });
+        verModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget; // El botón que activó el modal
+            const usuarioId = button.getAttribute('data-id'); // Obtén el ID del usuario
+
+            fetch(`/api/usuarios/detalles/${usuarioId}`)
+                .then(response => response.json())
+                .then(usuarios => {
+                    // Actualiza el contenido del modal
+                    document.getElementById('detalleUsuarioId').textContent = usuarios._id || 'No disponible';
+                    document.getElementById('detalleUsuarioCorreo').textContent = usuarios.correo || 'No disponible';
+                    document.getElementById('detalleUsuarioContraseña').textContent = usuarios.pass || 'No disponible';
+                    document.getElementById('detalleUsuarioRol').textContent = usuarios.rol || 'No disponible';
+                    document.getElementById('detalleUsuarioHabilitado').textContent = usuarios.habilitado || 'No disponible';
+                })
+                .catch(error => console.error('Error al cargar los detalles del usuario:', error));
+        });
+    } else {
+        console.warn('El modal con ID "detalleUsuario" no se encontró.');
+    }
 });
+
 
 //--========================================================== -->
 //--Scrip para eliminar usuarios-->
 //--========================================================== -->
 
-$('#eliminarCliente').on('show.bs.modal', function (event) {
+$('#eliminarUsuario').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); 
     var id = button.data('id'); 
 
     var modal = $(this);
-    var form = modal.find('#formEliminarCliente');
+    var form = modal.find('#formEliminarUsuario');
     
-    form.attr('action', '/api/clientes/aliminar/' + id);
+    form.attr('action', '/api/usuarios/aliminar/' + id);
 });
 
 </script>
