@@ -22,12 +22,13 @@
                         <input type="password" placeholder="Contraseña" id="pass" name="pass">
                     </div>
 
-                    <input type="submit" value="Login" class="button">
+                    <input type="submit" class="button">
                     <p>¿No tienes una cuenta? <a id="link-to-register" class="link">Regístrate</a></p>
 
                 </div>
 
             </form>
+
             <div id="loginMessage" class="mt-3"></div>
 
         </div>
@@ -87,15 +88,15 @@
 <script>
     $(document).ready(function() {
         $('#loginForm').on('submit', function(event) {
-            event.preventDefault(); // Evita el envío normal del formulario
+            event.preventDefault(); 
 
             $.ajax({
-                url: '/api/usuarios/login', // La ruta a tu endpoint de login
+                url: '/api/usuarios/login', 
                 method: 'POST',
                 data: $(this).serialize(),
                 success: function(response) {
                     $('#loginMessage').html('<div class="alert alert-success">Inicio de sesión exitoso</div>');
-                    // Cierra el modal si es necesario
+                    
                     $('#login').modal('hide');
                 },
                 error: function(xhr) {

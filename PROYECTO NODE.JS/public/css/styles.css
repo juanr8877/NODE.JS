@@ -53,10 +53,15 @@ html, body {
 
 .mapa {
     background: url(/img/mapa.PNG);
+    background-repeat: no-repeat;
     width:100%;
-    height:500px;
+    height:700px;
 }
 
+
+.logo{
+    width: 150px;
+}
 
 .wrapper-local {
     width:50%;
@@ -91,32 +96,83 @@ html, body {
 
 #bg-contactos{
     position:relative;
-    top: -130px;
 } 
 
  #seccion-contacto{
     background-color: #1b2a4e;
-    min-height:500px;
+    min-height:300px;
     position:relative;
 }
 
 /*=========================CONTACTOS FORMULARIO================================*/
 
-#contenedor-formulario{
-    position:absolute;
-    top:30%;
-    left:50%;
-    transform: translate(-50%, -50%);
-    background: #fbfafa;
-    border-radius:5px;
-    
+.contacto .container {
+    max-width: 1100px;
+    min-height: 200px;
+    padding: 20px;
 }
 
-#titulo-formulario {
-    color: #3f3f3f;
+.seccion-titulo{
+    color: white;
 }
 
+.contacto .rectangulo {
+margin-top: -5rem;
+background:#1b2a4e;
+border-radius: 10px;
+box-shadow: 0px 1px 4px 1px #809de0;
+}
 
+.contacto .row {
+width: 100%;
+display: flex;
+align-items: center;
+}
+
+.descripcion {
+color: white;
+font-size: 1.2rem;
+}
+
+.btn-contacto {
+color: white;
+font-weight: bold;
+background-color: transparent;
+border: 3px solid white;
+padding: 10px 0px;
+border-radius: 100px;
+transition: all 0.2s ease-in-out;
+width: 200px;
+height: 50px;
+margin: auto;
+display: flex;
+text-align: center;
+justify-content: center;
+}
+
+.contacto .btn-contacto:hover {
+background-color: white;
+color: black;
+}
+
+.btn-contacto i {
+color: white;
+display: flex;
+text-align: center;
+justify-content: center;
+font-size: 1.3rem;
+transition: all 0.2s ease-in-out;
+padding: 0px 10px;
+
+}
+
+.contenedor-contacto{
+    text-align: center;
+}
+
+.contacto .btn-contacto:hover i {
+color: black;
+}
 
 
 /*=========================FOOTER================================*/
@@ -130,7 +186,7 @@ footer {
 }
 footer p{
     color:#f3f3f3;
-    text-align:center;
+    
 }
 
 #iconos  i {
@@ -233,13 +289,16 @@ p{
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    padding: 20px; 
-    max-width: 350px; 
-    margin: 0 auto; 
+    align-items: center;
+    padding: 20px;
+    width: auto; /* Permite que el ancho sea dinámico según el contenido */
+    max-width: 100%; /* Limita el ancho máximo al 100% del contenedor padre */
+    margin: 0 auto;
     margin-bottom: 10px;
-    text-align: center; 
+    text-align: center;
+    box-sizing: border-box; /* Asegura que el padding y el borde se incluyan en el ancho total */
 }
+
 
 .btnRegresar{
     display: flex;
@@ -280,6 +339,7 @@ table.dataTable tbody td {
     max-width: 1450px; 
     padding: 20px; 
 }
+
 
 /*=========================******================================*/
 

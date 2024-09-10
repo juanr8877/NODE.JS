@@ -11,7 +11,7 @@ let typewriter = new Typewriter(app, {
  
 typewriter
   .pauseFor(2500)
-  .typeString('La Capital del Sol')
+  .typeString('Medellin la ciudad de la eterna primavera')
   .pauseFor(200)
   .deleteChars(10)
   .start();
