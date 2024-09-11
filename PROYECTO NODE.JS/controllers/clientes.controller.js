@@ -83,7 +83,7 @@ exports.registroCompleto = async (req, res) => {
         let usuarito = await usuarioController.insertarUsuarios(usuario);
         
         if (!usuarito) {
-            throw new Error("Error al crear el usuario"); // Lanza un error si usuarito es undefined
+            throw new Error("Error al crear el usuario");
         }
 
         console.log(usuarito);
@@ -93,13 +93,15 @@ exports.registroCompleto = async (req, res) => {
             telefono: req.body.telefonoCliente,
             direccion: req.body.direccionCliente,
             habilitado: true,
-            usuario: usuarito._id 
+            usuario: usuarito._id
         };
+
         await exports.insertarClientes(client);
-        await nodemailer.sendEmail(usuario.correo, "Confirmación de Registro",`Gracias por tu registro ${nombre} `);
+        await nodemailer.sendEmail(usuario.correo, "Confirmación de Registro", `Gracias por tu registro ${client.nombre}`);
+        
         res.redirect('/');
     } catch (error) {
-        res.status(500).json({ mensaje: "Se presentó un error" });
+        res.status(500).json({ mensaje: "Se presentó un error al registrar el usuario o el cliente" });
         console.error(error);
     }
 };

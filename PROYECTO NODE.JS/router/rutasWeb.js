@@ -25,7 +25,7 @@ router.get('/pedidos', pedidos.listarPedidos);
 
 //Usuarios
 router.get('/usuarios', usuarios.listarUsuarios);
-router.get('/usuarios/login/', usuarios.loginUsuario);
+router.post('/usuarios/login/', usuarios.loginUsuarios);
 router.get('/usuarios/detalles/:id', usuarios.detalleUsuarios);
 router.post('/usuarios/aliminar/:id', usuarios.eliminarUsuarios);
 router.post('/usuarios/editar/:id', usuarios.actualizarUsuarios);

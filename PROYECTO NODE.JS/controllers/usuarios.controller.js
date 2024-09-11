@@ -28,7 +28,7 @@ exports.insertarUsuarios = async (usuarioNuevo) => {
     }
 };
 
-exports.loginUsuario = async (req, res) => {
+exports.loginUsuarios = async (req, res) => {
     const { correo, pass } = req.body;  // Obtén el correo y la contraseña del formulario de login
 
     try {

@@ -25,13 +25,6 @@ app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
-// const session = require('express-session');
-
-// app.use(session({
-//     secret: 'tu_secreto_aqui',
-//     resave: false,
-//     saveUninitialized: true
-// }));
 
 app.use((req, res) => {
   res.status(404).render("pages/404");
