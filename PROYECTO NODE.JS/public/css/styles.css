@@ -341,7 +341,15 @@ table.dataTable tbody td {
     padding: 20px; 
 }
 
+.btn-carrito{
+    border: transparent;
+    background: none;
+    transition: all ease 800ms;
+}
 
+.btn-carrito :hover{
+    color: #1b2a4e;
+}
 /*=========================******================================*/
 
 @media(min-width:768px)
