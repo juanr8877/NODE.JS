@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router()
+const upload = require('../config/multer');
 
 const productos = require('../controllers/productos.controller');
 const clientes = require('../controllers/clientes.controller');
@@ -8,7 +9,7 @@ const usuarios = require('../controllers/usuarios.controller');
 
 //Productos
 router.get('/productos', productos.listarProductos);
-router.post('/productos/crear', productos.crearProductos);
+router.post('/productos/crear', upload.single('imagen'), productos.crearProductos);
 router.get('/productos/detalles/:id', productos.detalleProductos);
 router.post('/productos/aliminar/:id', productos.eliminarProductos);
 router.post('/productos/editar/:id', productos.actualizarProductos);

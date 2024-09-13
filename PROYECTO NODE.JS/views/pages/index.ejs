@@ -58,8 +58,27 @@ id="intro">
 <!--========================================================== -->
 <!-- PRODUCTOS EN VENTA-->
 <!--========================================================== -->
-
-
+<h1>Lorem ipsum dolor sit amet.</h1>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <% if (productos && productos.length > 0) { %>
+      <% productos.forEach(function(producto) { %>
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <img src="<%= producto.imagen %>" class="card-img-top" alt="<%= producto.nombre %>">
+            <div class="card-body">
+              <h5 class="card-title"><%= producto.nombre %></h5>
+              <p class="card-text"><%= producto.descripcion %></p>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    <% } else { %>
+      <p>No hay productos disponibles.</p>
+    <% } %>
+  </div>
+</div>
+ 
 
 <!--========================================================== -->
 <!-- TIPOS DE SERVICIOS-->

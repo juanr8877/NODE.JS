@@ -4,6 +4,7 @@ const logger = require('morgan');
 const app = express();
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const productos = require('./controllers/productos.controller');
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }))
@@ -12,9 +13,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // Ruta principal
-app.get("/", (req, res) => {
-  res.render('pages/index');
-});
+app.get('/', productos.listarProductos);
 
 //Rutas
 const userRoutes = require('./router/rutasWeb');

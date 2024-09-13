@@ -4,9 +4,15 @@ exports.listarProductos = async (req, res) => {
 
     try {
         const productos = await productoModel.find();
-        res.render('pages/productos/productos', { productos });
+
+        if(req.url === '/'){
+            res.render('pages/index', {productos});
+        }else {
+            res.render('pages/productos/productos', { productos });
+        }
     }catch(error) {
         console.log(error)
+        res.status(500).send('Error al obtener los productos');
     }
 };
 
