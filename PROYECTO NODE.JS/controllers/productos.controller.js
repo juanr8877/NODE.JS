@@ -17,15 +17,21 @@ exports.listarProductos = async (req, res) => {
 };
 
 exports.crearProductos = async (req, res) => {
-
     try {
-        const productos = new productoModel(req.body);
+        console.log(req.file); // Esto te mostrará información del archivo subido en la consola
+
+        const productos = new productoModel({
+            ...req.body,
+            imagen: req.file ? req.file.path : null // Guardar la ruta de la imagen
+        });
         await productos.save();
         res.redirect('/api/productos');
-    }catch(error) {
-        console.log(error)
+    } catch (error) {
+        console.log(error);
+        res.status(400).send('Error al crear el producto');
     }
 };
+
 
 exports.detalleProductos = async (req, res) => {
     try {

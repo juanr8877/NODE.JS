@@ -25,6 +25,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
+//Multer
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
 app.use((req, res) => {
   res.status(404).render("pages/404");
 });

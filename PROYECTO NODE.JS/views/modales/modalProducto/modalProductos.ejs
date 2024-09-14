@@ -8,7 +8,7 @@
 
             <div class="container mt-5 p-4">
                 <h2>Crear Producto</h2>
-                <form action="/api/productos/crear" method="POST">
+                <form action="/api/productos/crear" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="referencia" class="form-label">Referencia</label>
                         <input type="text" class="form-control"  name="referencia" placeholder="Ingrese la referencia del producto" required>
@@ -30,8 +30,8 @@
                         <input type="number" class="form-control" name="stock" placeholder="Ingrese la cantidad en stock" required>
                     </div>
                     <div class="mb-3">
-                        <label for="imagen" class="form-label">Imagen (URL)</label>
-                        <input type="text" class="form-control" name="imagen" required>
+                        <label for="imagen" class="form-label">Imagen</label>
+                        <input type="file" class="form-control" name="imagen" required>
                     </div>
                     <div class="mb-3">
                         <label for="habilitado" class="form-label">Habilitado</label>
