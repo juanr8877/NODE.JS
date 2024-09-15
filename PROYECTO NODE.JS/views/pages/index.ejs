@@ -48,7 +48,7 @@
 
 <section class="d-flex flex-column justify-content-center align-items-center pt-5  text-center w-50 m-auto"
 id="intro">
-<h1 class="p-3 fs-2 border-top border-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor velit molestiae vitae odit? Fugit, sint.<span
+<h1 class="p-3 fs-2 border-top border-3">Hola ipsum dolor sit amet consectetur adipisicing elit. Dolor velit molestiae vitae odit? Fugit, sint.<span
     class="text-primary">Lorem, ipsum dolor.<span></h1>
 <p class="p-3  fs-4">
   <span class="text-primary">Lorem.</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi saepe illo, amet eveniet aut nemo.
@@ -58,27 +58,30 @@ id="intro">
 <!--========================================================== -->
 <!-- PRODUCTOS EN VENTA-->
 <!--========================================================== -->
-<h1>Lorem ipsum dolor sit amet.</h1>
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <% if (productos && productos.length > 0) { %>
-      <% productos.forEach(function(producto) { %>
-        <div class="col-md-4">
-          <div class="card" style="width: 18rem;">
-            <img src="/<%= producto.imagen %>" class="card-img-top" alt="<%= producto.nombre %>" width="100" height="100">
-            <div class="card-body">
-              <h5 class="card-title"><%= producto.nombre %></h5>
-              <p class="card-text"><%= producto.descripcion %></p>
+
+<section>
+  <h1 class="texto-centrado">Lorem ipsum dolor sit amet.</h1>
+  <div class="container mt-5">
+    <div class="row justify-content-center tarjetas">
+      <% if (productos && productos.length > 0) { %>
+        <% productos.forEach(function(producto) { %>
+          <div class="col-md-4">
+            <div class="card tarjeta" style="width: 18rem;">
+              <img src="/<%= producto.imagen %>" class="card-img-top" alt="<%= producto.nombre %>" >
+              <div class="card-body">
+                <h5 class="card-title"><%= producto.nombre %></h5>
+                <p class="card-text"><%= producto.descripcion %></p>
+                <button class="btn-carrito"><i class="fa-solid fa-cart-arrow-down"></i></button>
+              </div>
             </div>
           </div>
-        </div>
-      <% }); %>
-    <% } else { %>
-      <p>No hay productos disponibles.</p>
-    <% } %>
+        <% }); %>
+      <% } else { %>
+        <p>No hay productos disponibles.</p>
+      <% } %>
+    </div>
   </div>
-</div>
- 
+</section>
 
 <!--========================================================== -->
 <!-- TIPOS DE SERVICIOS-->

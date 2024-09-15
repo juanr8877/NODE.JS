@@ -356,6 +356,48 @@ td img {
 .btn-carrito :hover{
     color: #1b2a4e;
 }
+
+/*=========================Tarjetas================================*/
+
+.tarjeta {
+    margin-bottom: 25px;
+    text-align: center;
+    width: 300px; 
+    height: 450px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    overflow: hidden; 
+}
+
+.texto-centrado{
+    text-align: center;
+}
+
+/*=========================Boton carrito================================*/
+
+.btn-carrito {
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center; 
+    align-items: flex-end; 
+    padding: 5px; 
+    cursor: pointer; 
+}
+
+.btn-carrito i {
+    font-size: 24px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el contenido verticalmente */
+}
+
 /*=========================******================================*/
 
 @media(min-width:768px)
