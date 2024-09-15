@@ -336,3 +336,4 @@ let dataTableOptions = {
 $(document).ready(function() {
   $('#example').DataTable(dataTableOptions);
 });
+

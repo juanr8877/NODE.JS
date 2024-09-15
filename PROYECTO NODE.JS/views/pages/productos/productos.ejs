@@ -35,36 +35,36 @@
             <tbody>
         
                 <% if (productos.length > 0) { %>
-                    <% productos.forEach(productos => { %>
+                    <% productos.forEach(producto => { %>
                         <tr>
-                            <td><%= productos.referencia %></td>      
-                            <td><%= productos.nombre %></td> 
-                            <td><%= productos.descripcion %></td> 
-                            <td><%= productos.precio %></td>     
-                            <td><%= productos.stock %></td>
-                            <td><%= productos.imagen %></td>                    
-                            <td><%= productos.habilitado %></td>          
+                            <td><%= producto.referencia %></td>      
+                            <td><%= producto.nombre %></td> 
+                            <td><%= producto.descripcion %></td> 
+                            <td><%= producto.precio %></td>     
+                            <td><%= producto.stock %></td>
+                            <td><img src="/<%= producto.imagen %>" alt="<%= producto.nombre %>"></td>
+                            <td><%= producto.habilitado %></td>          
                             <td class="btn-formularios">
         
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleProducto"
-                                    data-id="<%= productos._id %>">
+                                    data-id="<%= producto._id %>">
                                     <i class="fa-solid fa-eye"></i>
                                 </button>
                             
                                 <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarProducto"
-                                    data-id="<%= productos._id %>"
-                                    data-referencia="<%= productos.referencia %>"
-                                    data-nombre="<%= productos.nombre %>"
-                                    data-descripcion="<%= productos.descripcion %>"
-                                    data-precio="<%= productos.precio %>"
-                                    data-stock="<%= productos.stock %>"
-                                    data-imagen="<%= productos.imagen %>"
-                                    data-habilitado="<%= productos.habilitado %>">
+                                    data-id="<%= producto._id %>"
+                                    data-referencia="<%= producto.referencia %>"
+                                    data-nombre="<%= producto.nombre %>"
+                                    data-descripcion="<%= producto.descripcion %>"
+                                    data-precio="<%= producto.precio %>"
+                                    data-stock="<%= producto.stock %>"
+                                    data-imagen="<%= producto.imagen %>"
+                                    data-habilitado="<%= producto.habilitado %>">
                                     <i class="fa-solid fa-file-pen"></i>
                                 </button>
         
                                 <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarProducto"
-                                    data-id="<%= productos._id %>">
+                                    data-id="<%= producto._id %>">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>
                                 

@@ -22,13 +22,13 @@ exports.crearProductos = async (req, res) => {
 
         const productos = new productoModel({
             ...req.body,
-            imagen: req.file ? req.file.path : null // Guardar la ruta de la imagen
+            imagen: req.file ? req.file.path.replace(/\\/g, "/") : null // Reemplaza las barras inversas por barras normales
         });
         await productos.save();
-        res.redirect('/api/productos');
+        res.redirect('/?mensaje=producto_creado');
     } catch (error) {
         console.log(error);
-        res.status(400).send('Error al crear el producto');
+        res.status(400).send('/?mensaje=error_creacion');
     }
 };
 
@@ -57,6 +57,8 @@ exports.actualizarProductos = async (req, res) => {
     try {
         const {id} = req.params; // Tomar el ID del cliente de los parámetros
         const { referencia, nombre, descripcion, precio, stock, imagen, habilitado } = req.body; // Tomar los datos del cuerpo de la solicitud
+        
+        const nuevaImagen = req.file ? req.file.path.replace(/\\/g, "/") : null;
 
         // Crear objeto con los datos actualizados
         const datosActualizados = {
@@ -68,6 +70,10 @@ exports.actualizarProductos = async (req, res) => {
             imagen: imagen,
             habilitado: habilitado
         };
+
+        if (nuevaImagen) {
+            datosActualizados.imagen = nuevaImagen;
+        }
 
         // Intentar actualizar el cliente
         const productoActualizado = await productoModel.findByIdAndUpdate(id, datosActualizados, { new: true, runValidators: true });

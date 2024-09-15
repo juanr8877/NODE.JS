@@ -12,7 +12,7 @@ router.get('/productos', productos.listarProductos);
 router.post('/productos/crear', upload.single('imagen'), productos.crearProductos);
 router.get('/productos/detalles/:id', productos.detalleProductos);
 router.post('/productos/aliminar/:id', productos.eliminarProductos);
-router.post('/productos/editar/:id', productos.actualizarProductos);
+router.post('/productos/editar/:id',upload.single('imagen'), productos.actualizarProductos);
 
 //Clientes
 router.get('/clientes', clientes.listarClientes);

@@ -65,7 +65,7 @@
 
             <div class="container mt-5 p-4 ">
                 <h2>Editar Producto</h2>
-                <form id="editarProductoForm" method="POST">
+                <form id="editarProductoForm" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="referencia" class="form-label">Referencia</label>
                         <input type="text" class="form-control" id="referencia"  name="referencia" required>
@@ -87,8 +87,8 @@
                         <input type="number" class="form-control" id="stock" name="stock" required>
                     </div>
                     <div class="mb-3">
-                        <label for="imagen" class="form-label">Imagen (URL)</label>
-                        <input type="text" class="form-control" id="imagen" name="imagen" required>
+                        <label for="imagen" class="form-label">Imagen</label>
+                        <input type="file" class="form-control" name="imagen" required>
                     </div>
                     <div class="mb-3">
                         <label for="habilitado" class="form-label">Habilitado</label>
@@ -204,6 +204,7 @@ $('#editarProducto').on('show.bs.modal', function (event) {
         modal.find('#stock').val(stock);
         modal.find('#imagen').val(imagen);
         modal.find('#habilitado').val(habilitado);
+
     });
 
 
@@ -248,5 +249,27 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.error('Error al cargar los detalles del producto:', error));
     });
 });
+
+ // Mostrar mensajes basados en el parámetro 'mensaje'
+ const urlParams = new URLSearchParams(window.location.search);
+ const mensaje = urlParams.get('mensaje');
+
+ if (mensaje === 'producto_creado') {
+     Swal.fire({
+         icon: 'success',
+         title: 'Éxito',
+         text: '¡Producto creado exitosamente!',
+         timer: 3000,
+         showConfirmButton: false
+     });
+ } else if (mensaje === 'error_creacion') {
+     Swal.fire({
+         icon: 'error',
+         title: 'Error',
+         text: 'Hubo un error al crear el producto.',
+         timer: 3000,
+         showConfirmButton: false
+     });
+ }
 
 </script>
