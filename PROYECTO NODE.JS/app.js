@@ -4,7 +4,16 @@ const logger = require('morgan');
 const app = express();
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const session = require('express-session');
 const productos = require('./controllers/productos.controller');
+
+// Configurar sesiones
+app.use(session({
+  secret: 'clave_secreta',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }))
