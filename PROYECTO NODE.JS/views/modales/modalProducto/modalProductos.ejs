@@ -142,7 +142,7 @@
             <div class="container mt-5 formDetalle">
                 <h2>Detalle Producto</h2>
                 <hr>
-                <table id="detalleProductoTable" class="table table-striped">
+                <table id="detalleProductoTable" class="table table-striped" enctype="multipart/form-data">
                     <tr>
                         <th>Referencia:</th>
                         <td id="detalleReferencia"></td>
@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('detalleDescripcion').textContent = productos.descripcion;
                 document.getElementById('detallePrecio').textContent = productos.precio;
                 document.getElementById('detalleStock').textContent = productos.stock;
-                document.getElementById('detalleImagen').textContent = productos.imagen;
+                document.getElementById('detalleImagen').src = productos.imagen;
             })
             .catch(error => console.error('Error al cargar los detalles del producto:', error));
     });

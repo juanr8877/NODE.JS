@@ -23,7 +23,7 @@ const clienteSchema = new mongoose.Schema({
     },
     usuario:{
         type: Schema.Types.ObjectId,
-        ref: 'usuario',
+        ref: 'usuarios',
         required: true
     }
 });

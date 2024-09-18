@@ -1,24 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script>
-        function agregarProducto(){
+<script>
+const carritoSchema = new Schema({
+userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+productos: [
+{
+    productoId: { type: Schema.Types.ObjectId, ref: 'Producto', required: true },
+    cantidad: { type: Number, default: 1 }
+}
+],
+totalPrecio: { type: Number, default: 0 }
+});
 
-        }
-
-        function verCarrito(){
-
-        }
-    </script>
-
-</head>
-<body>
-    <button onclick="agregarProducto()">Producto1</button>
-    <button onclick="agregarProducto()">Producto2</button>
-    <button onclick="verCarrito()"> ver Carrito</button>
-</body>
-</html>
- 
+</script>

@@ -7,11 +7,12 @@ const productos = require('../controllers/productos.controller');
 const clientes = require('../controllers/clientes.controller');
 const pedidos = require('../controllers/pedidos.controller');
 const usuarios = require('../controllers/usuarios.controller');
+const carrito = require('../controllers/carrito.controller')
 
 //Productos
 router.get('/productos',middlewareAutenticacion, productos.listarProductos);
 router.post('/productos/crear',middlewareAutenticacion, upload.single('imagen'), productos.crearProductos);
-router.get('/productos/detalles/:id',middlewareAutenticacion, productos.detalleProductos);
+router.get('/productos/detalles/:id',middlewareAutenticacion,upload.single('imagen'), productos.detalleProductos);
 router.post('/productos/aliminar/:id',middlewareAutenticacion, productos.eliminarProductos);
 router.post('/productos/editar/:id',middlewareAutenticacion,upload.single('imagen'), productos.actualizarProductos);
 
@@ -32,6 +33,11 @@ router.post('/usuarios/logout/', usuarios.logoutUsuarios);
 router.get('/usuarios/detalles/:id',middlewareAutenticacion, usuarios.detalleUsuarios);
 router.post('/usuarios/aliminar/:id',middlewareAutenticacion, usuarios.eliminarUsuarios);
 router.post('/usuarios/editar/:id',middlewareAutenticacion, usuarios.actualizarUsuarios);
+
+//Carrito
+router.post('/añadir/:productoId/', carrito.añadirProductos);
+router.post('/eliminar/:productoId/', carrito.eliminarProductos);
+router.get('/', carrito.verCarrito);
 
 //Autenticacion
 router.get('/login', usuarios.vistaLogin);
