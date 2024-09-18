@@ -1,17 +1,15 @@
 const multer = require('multer');
 const path = require('path');
 
-// Configurar almacenamiento para multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads'); // Carpeta donde se guardarán las imágenes
+    cb(null, 'uploads'); 
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}${path.extname(file.originalname)}`); // Renombrar archivo para evitar conflictos
+    cb(null, `${Date.now()}${path.extname(file.originalname)}`); 
   }
 });
 
-// Filtrar archivos por tipo de imagen
 const fileFilter = (req, file, cb) => {
   const fileTypes = /jpeg|jpg|png|gif/;
   const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());

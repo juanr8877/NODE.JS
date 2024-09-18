@@ -5,6 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const session = require('express-session');
+const verificarSesion = require('./config/middlewareVerificarSesion');
 const productos = require('./controllers/productos.controller');
 
 // Configurar sesiones
@@ -21,6 +22,9 @@ app.use(express.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+// Middleware de verificación de sesión
+app.use(verificarSesion);
+
 // Ruta principal
 app.get('/', productos.listarProductos);
 
@@ -34,9 +38,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
-//Multer
+//Middleware Multer
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
+//Middleware para manejar errores 404
 app.use((req, res) => {
   res.status(404).render("pages/404");
 });

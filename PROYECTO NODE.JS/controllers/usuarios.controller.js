@@ -18,7 +18,7 @@ exports.insertarUsuarios = async (usuarioNuevo) => {
         }
         return await usuariosModel(usuarioNuevo).save();
     } catch (error) {
-        if (error.code === 11000) { // Código de error para clave duplicada
+        if (error.code === 11000) { 
             console.error("Error: El correo ya está registrado.");
             throw new Error("El correo ya está registrado.");
         } else {
@@ -29,32 +29,40 @@ exports.insertarUsuarios = async (usuarioNuevo) => {
 };
 
 exports.loginUsuarios = async (req, res) => {
-    const { correo, pass } = req.body;  // Obtén el correo y la contraseña del formulario de login
+    const { correo, pass } = req.body;  
 
     try {
-        // Buscar el usuario por correo en la base de datos
+        
         const usuario = await usuariosModel.findOne({ correo });
 
         if (!usuario) {
             return res.status(400).json({ mensaje: 'El usuario no existe' });
         }
 
-        // Comparar la contraseña ingresada con la almacenada en la base de datos
         const esValido = await usuario.compararContraseña(pass);
 
         if (!esValido) {
             return res.status(400).json({ mensaje: 'Contraseña incorrecta' });
         }
 
-        // Configura la sesión
         req.session.usuario = usuario;
 
-        // Redirige a la página específica
-        res.redirect('/api/productos');
+        res.redirect("/api/productos"); 
+
     } catch (error) {
         res.status(500).json({ mensaje: 'Error en el servidor', error });
     }
 };
+
+exports.logoutUsuarios = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ mensaje: 'Error al cerrar la sesión' });
+        }
+        res.status(200).json({ mensaje: 'Sesión cerrada exitosamente' });
+    });
+};
+
 
 exports.detalleUsuarios = async (req, res) => {
     try {

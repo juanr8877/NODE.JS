@@ -28,6 +28,7 @@ router.get('/pedidos',middlewareAutenticacion, pedidos.listarPedidos);
 //Usuarios
 router.get('/usuarios',middlewareAutenticacion, usuarios.listarUsuarios);
 router.post('/usuarios/login/', usuarios.loginUsuarios);
+router.post('/usuarios/logout/', usuarios.logoutUsuarios);
 router.get('/usuarios/detalles/:id',middlewareAutenticacion, usuarios.detalleUsuarios);
 router.post('/usuarios/aliminar/:id',middlewareAutenticacion, usuarios.eliminarUsuarios);
 router.post('/usuarios/editar/:id',middlewareAutenticacion, usuarios.actualizarUsuarios);

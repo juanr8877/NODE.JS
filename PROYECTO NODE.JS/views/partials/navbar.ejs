@@ -23,11 +23,16 @@
           </li>
         </ul>
         <form class="d-flex">
-          <button type="button" class="fa-solid fa-user btn-login" data-bs-toggle="modal" data-bs-target="#login"></button>
-          <button class="btn-carrito" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-            <i class="fa-solid fa-cart-arrow-down btn-login"></i>
-          </button>
+            <% if (!usuarioAutenticado) { %>
+                <button type="button" title="Iniciar sesión" class="fa-solid fa-user btn-login" data-bs-toggle="modal" data-bs-target="#login"></button>
+            <% } else { %>
+                <a id="logoutButton" href="/api/usuarios/logout" title="Cerrar sesión" class="fa-solid fa-arrow-right-from-bracket btn-logout"></a>
+            <% } %>
+            <button class="btn-cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                <i class="fa-solid fa-cart-arrow-down btn-login"></i>
+            </button>
         </form>
+      
       </div>
     </div>
 </nav>
