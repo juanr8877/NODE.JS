@@ -398,6 +398,26 @@ td img {
     justify-content: space-between; /* Distribuye el contenido verticalmente */
 }
 
+/*=========================Vista login================================*/
+
+.container-login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    max-width: 380px; /* Ancho máximo del formulario */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.g{
+    border: none;
+}
+
 /*=========================******================================*/
 
 @media(min-width:768px)

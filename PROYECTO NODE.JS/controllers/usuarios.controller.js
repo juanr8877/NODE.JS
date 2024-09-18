@@ -46,8 +46,11 @@ exports.loginUsuarios = async (req, res) => {
             return res.status(400).json({ mensaje: 'Contraseña incorrecta' });
         }
 
-        // Si la contraseña es correcta, puedes proceder con la autenticación
-        res.status(200).json({ mensaje: 'Inicio de sesión exitoso', usuario });
+        // Configura la sesión
+        req.session.usuario = usuario;
+
+        // Redirige a la página específica
+        res.redirect('/api/productos');
     } catch (error) {
         res.status(500).json({ mensaje: 'Error en el servidor', error });
     }
@@ -95,4 +98,9 @@ exports.eliminarUsuarios = async (req, res) => {
     } catch (error) {
         res.status(500).json({ mensaje: "Se presentó un error" });
     }
+};
+
+
+exports.vistaLogin = async (req, res) => {
+    res.render('pages/login/login')
 };
