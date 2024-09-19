@@ -28,5 +28,5 @@ const carritoSchema = new mongoose.Schema({
     }
 });
 
-const Carrito = mongoose.model('Carrito', carritoSchema);
+const Carrito = mongoose.model('carrito', carritoSchema);
 module.exports = Carrito;

@@ -4,7 +4,7 @@ const productoModel = require('../models/productos.model');
 // Añadir producto al carrito
 exports.añadirProductos = async (req, res) => {
     try {
-        const productoId = req.params.productoId;
+        const productoId = req.params.id;
         const cantidad = req.body.cantidad || 1;
 
         let carrito = await carritoModel.findOne({ userId: req.session.userId });
@@ -34,7 +34,7 @@ exports.añadirProductos = async (req, res) => {
 // Eliminar producto del carrito
 exports.eliminarProductos = async (req, res) => {
     try {
-        const productoId = req.params.productoId;
+        const productoId = req.params.id;
 
         let carrito = await carritoModel.findOne({ usuarioId: req.session.userId });
         if (!carrito) {
@@ -52,12 +52,12 @@ exports.eliminarProductos = async (req, res) => {
 // Ver carrito
 exports.verCarrito = async (req, res) => {
     try {
-        const carrito = await carritoModel.findOne({ usuarioId: req.session.userId }).populate('productos.productoId');
+        const carrito = await carritoModel.findOne({ userId: req.session.userId }).populate('productos.productoId');
         if (!carrito) {
-            return res.status(404).send('Carrito vacío');
+            return res.status(404).json({ message: 'Carrito vacío' });
         }
-        res.render('carrito', { carrito });
+        res.json(carrito); // Cambiado a JSON
     } catch (error) {
-        res.status(500).send(error.message);
+        res.status(500).json({ message: error.message });
     }
 };

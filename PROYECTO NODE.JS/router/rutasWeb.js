@@ -35,9 +35,9 @@ router.post('/usuarios/aliminar/:id',middlewareAutenticacion, usuarios.eliminarU
 router.post('/usuarios/editar/:id',middlewareAutenticacion, usuarios.actualizarUsuarios);
 
 //Carrito
-router.post('/añadir/:productoId/', carrito.añadirProductos);
-router.post('/eliminar/:productoId/', carrito.eliminarProductos);
-router.get('/', carrito.verCarrito);
+router.post('/carrito/añadir/:id', carrito.añadirProductos);
+router.post('/carrito/eliminar/:id', carrito.eliminarProductos);
+router.get('/carrito', carrito.verCarrito);
 
 //Autenticacion
 router.get('/login', usuarios.vistaLogin);

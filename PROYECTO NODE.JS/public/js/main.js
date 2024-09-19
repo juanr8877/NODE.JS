@@ -374,3 +374,64 @@ $(document).ready(function() {
         });
     });
 });
+
+//--========================================================== -->
+//--Scrip para agregar producto al carrito-->
+//--========================================================== -->
+
+$(document).ready(function() {
+    const offcanvas = $('#offcanvasRight');
+
+    // Al hacer clic en el botón de añadir al carrito
+    $('.btn-carrito').on('click', function() {
+        const productoId = $(this).data('id');
+        
+        // Lógica para añadir el producto al carrito
+        $.post(`/1/carrito/añadir/${productoId}`, { cantidad: 1 }, function(response) {
+            // Actualizar el offcanvas
+            actualizarCarrito();
+            alert(response); // Mensaje de éxito
+        }).fail(function(err) {
+            alert(err.responseText); // Mensaje de error
+        });
+    });
+
+    function actualizarCarrito() {
+        $.get('/2/carrito', function(carrito) {
+            $('#carrito-productos').empty();
+            let total = 0;
+
+            carrito.productos.forEach(item => {
+                const precio = item.productoId.precio * item.cantidad;
+                total += precio;
+                $('#carrito-productos').append(`
+                    <div class="producto">
+                        <h6>${item.productoId.nombre} (x${item.cantidad})</h6>
+                        <button class="btn-eliminar" data-id="${item.productoId._id}">Eliminar</button>
+                    </div>
+                `);
+            });
+
+            $('#total').text(total.toFixed(2));
+
+            // Lógica para eliminar un producto
+            $('.btn-eliminar').on('click', function() {
+                const productoId = $(this).data('id');
+                $.post(`/3/carrito/eliminar/${productoId}`, function(response) {
+                    actualizarCarrito(); // Actualiza el carrito
+                    alert(response); // Mensaje de éxito
+                }).fail(function(err) {
+                    alert(err.responseText); // Mensaje de error
+                });
+            });
+        });
+    }
+
+    // Cuando se abre el offcanvas, actualizar el carrito
+    offcanvas.on('show.bs.offcanvas', function () {
+        actualizarCarrito();
+    });
+});
+
+  
+

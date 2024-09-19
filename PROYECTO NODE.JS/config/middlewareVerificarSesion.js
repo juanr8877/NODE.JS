@@ -1,5 +1,5 @@
 // middleware/verificarSesion.js
 module.exports = (req, res, next) => {
-    res.locals.usuarioAutenticado = req.session.usuario ? true : false;
+    res.locals.usuarioAutenticado = req.session.userId  ? true : false;
     next();
 };
