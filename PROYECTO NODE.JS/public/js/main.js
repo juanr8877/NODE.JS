@@ -387,43 +387,57 @@ $(document).ready(function() {
         const productoId = $(this).data('id');
         
         // Lógica para añadir el producto al carrito
-        $.post(`/1/carrito/añadir/${productoId}`, { cantidad: 1 }, function(response) {
-            // Actualizar el offcanvas
-            actualizarCarrito();
-            alert(response); // Mensaje de éxito
-        }).fail(function(err) {
-            alert(err.responseText); // Mensaje de error
+        $.ajax({
+            url: `/api/carrito/agregar/${productoId}`,
+            method: 'POST',
+            data: { cantidad: 1 },
+            success: function(response) {
+                actualizarCarrito();
+                alert(response); // Mensaje de éxito
+            },
+            error: function(err) {
+                alert(err.responseText); // Mensaje de error
+            }
         });
     });
 
     function actualizarCarrito() {
-        $.get('/2/carrito', function(carrito) {
-            $('#carrito-productos').empty();
-            let total = 0;
+        $.ajax({
+            url: '/api/carrito',
+            method: 'GET',
+            success: function(carrito) {
+                $('#carrito-productos').empty();
+                let total = 0;
 
-            carrito.productos.forEach(item => {
-                const precio = item.productoId.precio * item.cantidad;
-                total += precio;
-                $('#carrito-productos').append(`
-                    <div class="producto">
-                        <h6>${item.productoId.nombre} (x${item.cantidad})</h6>
-                        <button class="btn-eliminar" data-id="${item.productoId._id}">Eliminar</button>
-                    </div>
-                `);
-            });
-
-            $('#total').text(total.toFixed(2));
-
-            // Lógica para eliminar un producto
-            $('.btn-eliminar').on('click', function() {
-                const productoId = $(this).data('id');
-                $.post(`/3/carrito/eliminar/${productoId}`, function(response) {
-                    actualizarCarrito(); // Actualiza el carrito
-                    alert(response); // Mensaje de éxito
-                }).fail(function(err) {
-                    alert(err.responseText); // Mensaje de error
+                carrito.productos.forEach(item => {
+                    const precio = item.productoId.precio * item.cantidad;
+                    total += precio;
+                    $('#carrito-productos').append(`
+                        <div class="producto">
+                            <h6>${item.productoId.nombre} (x${item.cantidad})</h6>
+                            <button class="btn-eliminar" data-id="${item.productoId._id}">Eliminar</button>
+                        </div>
+                    `);
                 });
-            });
+
+                $('#total').text(total.toFixed(2));
+
+                // Lógica para eliminar un producto
+                $('.btn-eliminar').on('click', function() {
+                    const productoId = $(this).data('id');
+                    $.ajax({
+                        url: `/api/carrito/eliminar/${productoId}`,
+                        method: 'POST',
+                        success: function(response) {
+                            actualizarCarrito(); // Actualiza el carrito
+                            alert(response); // Mensaje de éxito
+                        },
+                        error: function(err) {
+                            alert(err.responseText); // Mensaje de error
+                        }
+                    });
+                });
+            }
         });
     }
 
@@ -432,6 +446,7 @@ $(document).ready(function() {
         actualizarCarrito();
     });
 });
+
 
   
 

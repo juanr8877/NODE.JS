@@ -45,7 +45,7 @@ exports.loginUsuarios = async (req, res) => {
             return res.status(400).json({ mensaje: 'Contraseña incorrecta' });
         }
 
-        req.session.usuario = usuario;
+        req.session.userId = usuario;
 
         res.redirect("/api/productos"); 
 

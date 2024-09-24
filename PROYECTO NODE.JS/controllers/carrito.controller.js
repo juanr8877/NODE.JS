@@ -2,7 +2,7 @@ const carritoModel = require('../models/carrito.model');
 const productoModel = require('../models/productos.model');
 
 // Añadir producto al carrito
-exports.añadirProductos = async (req, res) => {
+exports.agregarProductos = async (req, res) => {
     try {
         const productoId = req.params.id;
         const cantidad = req.body.cantidad || 1;
@@ -36,7 +36,7 @@ exports.eliminarProductos = async (req, res) => {
     try {
         const productoId = req.params.id;
 
-        let carrito = await carritoModel.findOne({ usuarioId: req.session.userId });
+        let carrito = await carritoModel.findOne({ userId: req.session.userId });
         if (!carrito) {
             return res.status(404).send('Carrito no encontrado');
         }
